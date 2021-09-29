@@ -95,13 +95,10 @@ export const deleteComment = async (req, res) => {
     if (!match) throw new Error('Match not found')
 
     const commentToDelete = match.comments.id(commentId)
-    // FIX BROKEN LINE BELOW
-    // const  currentUsername =  commentToDelete.owner //User.findById(
-    // console.log(currentUsername, 'current username')
 
     if (!commentToDelete) throw new Error('Comment not found')
-    if (!commentToDelete.owner.equals(req.currentUser._id)) throw new Error('Unauthorised')
-    // REFACTOR LINE ABOVE  (and not) currentUsername.equals('admin')
+    if (!commentToDelete.owner.equals(req.currentUser._id) && req.currentUser.username !== 'admin') throw new Error('Unauthorised')
+
     await commentToDelete.remove()
     await match.save()
     return res.sendStatus(204)
