@@ -1,0 +1,19 @@
+{
+  "name": "project-3",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:CosmasC128/Project-3.git",
+  "license": "MIT",
+  "scripts": {
+    "serve": "npx nodemon index.js",
+    "seed": "node db/seeds.js",
+    "hey": "node db/demo.js"
+  },
+  "type": "module",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.0.8"
+  }
+}
