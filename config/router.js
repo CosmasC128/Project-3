@@ -1,5 +1,5 @@
 import express from 'express'
-import { getAllMatches, createMatch, deleteMatch, getSingleMatch, createComment, deleteComment, updateComment } from '../controllers/movies.js' // Import our controllers
+import { getAllMatches, createMatch, deleteMatch, getSingleMatch, createComment, deleteComment } from '../controllers/matches.js' // Import our controllers
 import { registerUser, loginUser } from '../controllers/auth.js'
 import { secureRoute } from './secureRoute.js'
 
@@ -15,7 +15,6 @@ router.route('/matches')
 router.route('/matches/:id')
   .get(getSingleMatch)
   .post(secureRoute, createComment) // three user methods
-  .put(secureRoute, updateComment) // three user methods
   .delete(secureRoute, deleteComment) // three user methods
 
 // ~~~~~~~~~
