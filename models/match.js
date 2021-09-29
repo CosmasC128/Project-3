@@ -12,7 +12,7 @@ const matchSchema = new mongoose.Schema({
   url: { type: String, required: true, unique: true },
   views: { type: Number, required: true },
   votes: { type: Number, required: true },
-  owner: { type: mongoose.Schema.ObjectId, ref: 'User', required: true }, // our relationship(!)
+  owner: { type: mongoose.Schema.ObjectId, ref: 'User', required: true }, // our relationship(!) SOMETHING FUCKY - ADDING ID OF MATCH AND NOT ADMIN
   // ObjectId relates to the User model, and is one specific user's ID
   comments: [commentSchema]
   }, {

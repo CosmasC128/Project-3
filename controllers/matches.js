@@ -1,5 +1,5 @@
 import Match from '../models/match.js'
-
+// import User from '../models/user.js'
 
 //getAllMatches, createMatch, deleteMatch, 
 // methods admin in /matches
@@ -17,9 +17,9 @@ export const getAllMatches = async (_req, res) => {
 export const createMatch = async (req, res) => {
   try {
     const adminMatch = { ...req.body, owner: req.currentUser._id }
-    
+
     // ~~~ user authorization validation
-    if (!adminMatch.owner.equals('admin')) throw new Error('Unauthorised')    
+    if (req.currentUser.username !== 'admin') throw new Error('Unauthorised')
 
     const matchToAdd = await Match.create(adminMatch)
     res.status(201).json(matchToAdd)
@@ -34,68 +34,79 @@ export const createMatch = async (req, res) => {
 export const deleteMatch = async (req, res) => {
   const { id } = req.params
   try {
-    const movieToDelete = await Movie.findById(id)
+    const matchToDelete = await Match.findById(id)
 
-    if (!movieToDelete) throw new Error('Movie not found')
-    if (!movieToDelete.owner.equals(req.currentUser._id)) throw new Error('Unauthorised')
+    if (!matchToDelete) throw new Error('Match not found')
+    if (!matchToDelete.owner.equals(req.currentUser._id)) throw new Error('Unauthorised')
     
-    await movieToDelete.remove()
+    await matchToDelete.remove()
+    console.log('Match successfully deleted!')
     return res.sendStatus(204)
   } catch (err) {
-    console.log('🆘 Movie not deleted')
+    console.log('Match not deleted')
     console.log(err)
-    return res.status(404).json({ message: 'Movie not found or deleted', errors: err.message })
+    return res.status(404).json({ message: 'Match not found or deleted', errors: err.message })
   }
 }
 
-// ~~~~~~~~~~~ METHODS FOR /maches/:id
-// getSingleMatch, createComment, deleteComment
+// ~~~~~~~~~~~ METHODS FOR /machtes/:id
+// getSingleMatch
 
 export const getSingleMatch = async (req, res) => {
   try {
     const { id } = req.params
-    const movie = await Movie.findById(id).populate('owner').populate('reviews.owner') // populate owner of movie and owner for each review
-    // console.log(movie)
-    return res.status(200).json(movie)
+    const match = await Match.findById(id) //.populate('owner') //.populate('comments.owner') // populate owner of match and owner for each review
+    console.log(match)
+
+    return res.status(200).json(match)
   } catch (err) {
-    console.log('🆘 Error finding single movie')
+    console.log('Error finding single Match')
     console.log(err)
-    return res.status(404).json({ message: 'Movie not found', errors: err })
+    return res.status(404).json({ message: 'match not found', errors: err })
   }
 }
 
-
+// ~~~~~ comment stuff
+// router.route('/matches/:id/comments')
 export const createComment = async (req, res) => {
   const { id } = req.params
   try {
-    const movie = await Movie.findById(id) // Find movie with id in params
-    if (!movie) throw new Error()
-    const newReview = { ...req.body, owner: req.currentUser._id } // Creating a review based on the req.body and the req.currentUser
-    movie.reviews.push(newReview) // Pushing review to the reviews array on the movie document
-    await movie.save() // Saving the movie document
-    return res.status(200).json(movie) // Return movie to user
+    const match = await Match.findById(id) // Find match with id in params
+    if (!match) throw new Error()
+    const newComment = { ...req.body, owner: req.currentUser._id } // Creating a Comment based on the req.body and the req.currentUser
+    match.comments.push(newComment) // Pushing Comment to the Comments array on the match document
+    
+    await match.save()
+    return res.status(200).json(match)
   } catch (err) {
-    console.log('🆘 Review not added')
+    console.log('Comment not added')
     console.log(err)
   }
 }
 
-// DELETE /movies/:id/reviews/:reviewId
-// Look inside the specified movie, and find a review relating to reviewId
-// If the review is owned by the requester, we will then delete it
+// DELETE /matches/:id/comments/:commentId
+// Look inside the specified movie, and find a comment relating to commentId
+// If the comment is owned by the requester, we will then delete it
 export const deleteComment = async (req, res) => {
-  const { id, reviewId } = req.params
+  const { id, commentId } = req.params
   try {
-    const movie = await Movie.findById(id) // Finding the movie from the id in the params
-    if (!movie) throw new Error('Movie not found') // Throw an error if movie not found
-    const reviewToDelete = movie.reviews.id(reviewId) // find the review from the reviewId in the params
-    if (!reviewToDelete) throw new Error('Review not found') // Throw an error if the review was not found
-    if (!reviewToDelete.owner.equals(req.currentUser._id) && !movie.owner.equals(req.currentUser._id)) throw new Error('Unauthorised')
-    await reviewToDelete.remove() // Removing the review from the movie document
-    await movie.save() // Saving the movie document
-    return res.sendStatus(204) // Sending a response of 204 No Content
+
+    const match = await Match.findById(id)
+    if (!match) throw new Error('Match not found')
+
+    const commentToDelete = match.comments.id(commentId)
+    // FIX BROKEN LINE BELOW
+    // const  currentUsername =  commentToDelete.owner //User.findById(
+    // console.log(currentUsername, 'current username')
+
+    if (!commentToDelete) throw new Error('Comment not found')
+    if (!commentToDelete.owner.equals(req.currentUser._id)) throw new Error('Unauthorised')
+    // REFACTOR LINE ABOVE  (and not) currentUsername.equals('admin')
+    await commentToDelete.remove()
+    await match.save()
+    return res.sendStatus(204)
   } catch (err) {
-    console.log('🆘 Review was not deleted!')
+    console.log('Comment was not deleted!')
     console.log(err.message)
     return res.status(404).json(err.message)
   }

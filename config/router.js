@@ -9,14 +9,20 @@ const router = express.Router()
 
 router.route('/matches') 
   .get(getAllMatches)
-  .post(secureRoute, createMatch) // two 'admin' methods
-  .delete(secureRoute, deleteMatch) // two 'admin' methods
+  .post(secureRoute, createMatch)
 
 router.route('/matches/:id')
-  .get(getSingleMatch)
-  .post(secureRoute, createComment) // three user methods
-  .delete(secureRoute, deleteComment) // three user methods
+  .get(getSingleMatch)  
+  .delete(secureRoute, deleteMatch) 
 
+// ~~~~~~~~~
+
+router.route('/matches/:id/comments')
+  .post(secureRoute, createComment) 
+
+router.route('/matches/:id/comments/:commentId')
+  .delete(secureRoute, deleteComment)
+  
 // ~~~~~~~~~
 
 router.route('/login')
