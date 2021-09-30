@@ -25,6 +25,11 @@ const matchSchema = new mongoose.Schema({
     return ((this.votes / this.views) * 100).toFixed(0)
   })
 
+  matchSchema.virtual('thumbNail')
+  .get(function(){
+    return `https://img.youtube.com/vi/${this.url.slice(30)}/default.jpg`
+  })
+
 matchSchema.set('toJSON', { virtuals: true })
 
 export default mongoose.model('Match', matchSchema)

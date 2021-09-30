@@ -15,12 +15,6 @@ import Register from './components/auth/Register.js'
 // get data from our database
 // need to link back end and frontend through data
 
-// const { createProxyMiddleware } = require('http-proxy-middleware')
-
-// module.exports = function (app){
-//   app.use(createProxyMiddleware('/api', { target: 'http://localhost:4000' }))
-// }
-
 const  App = () => {
   
   
@@ -36,10 +30,10 @@ const  App = () => {
 
   const matchesArray = Object.values({ ...matches })
   // console.log(matchesArray, 'from the app.js')
-  if (matches){
-    console.log(matchesArray, 'from the app.js')
-    // console.log(matchTitle)
-  }
+  // if (matches){
+  //   console.log(matchesArray, 'from the app.js')
+  //   // console.log(matchTitle)
+  // }
   
   return (
     <BrowserRouter>
@@ -55,7 +49,7 @@ const  App = () => {
           <MatchCard matchesArray={matchesArray} />
         </Route>
         <Route exact path="/matches/:id">
-          <Match />
+          <Match matchesArray={matchesArray} />
         </Route>
         <Route exact path="/login">
           <Login />
