@@ -7,7 +7,9 @@ import MatchCard from './MatchCard.js'
 
 // interact with database, then map entries in matchesData to display each match card
 
-const Matches = () => {
+const Matches = ({ matchesArray }) => {
+  
+  console.log(matchesArray, 'from match card')
   return (<>
     <div>See all the Matches!</div>
     <MatchCard  />

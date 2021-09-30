@@ -7,6 +7,7 @@ import Home from './components/Home.js'
 import Footer from './components/Footer.js'
 import Matches from './components/Matches.js'
 import Match from './components/Match.js'
+import MatchCard from './components/MatchCard.js'
 
 import Login from './components/auth/Login.js'
 import Register from './components/auth/Register.js'
@@ -33,12 +34,10 @@ const  App = () => {
     getData()
   }, [])
 
-  // const match = { ...matches[0] }
-  // const matchTitle = match.title
   const matchesArray = Object.values({ ...matches })
 
   if (matches){
-    console.log(matchesArray)
+    console.log(matchesArray, 'from the app.js')
     // console.log(matchTitle)
   }
   
@@ -50,10 +49,13 @@ const  App = () => {
           <Home />
         </Route>
         <Route exact path="/matches">
-          <Matches />
+          <Matches matchesArray={matchesArray} />
+        </Route>
+        <Route exact path="/matches/matchCard">
+          <MatchCard matchesArray={matchesArray} />
         </Route>
         <Route exact path="/matches/:id">
-          <Match />
+          <Match matchesArray={matchesArray} />
         </Route>
         <Route exact path="/login">
           <Login />

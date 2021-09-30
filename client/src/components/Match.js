@@ -1,7 +1,8 @@
 import React from 'react'
-const Match = () => {
 
+const Match = ({ matchesArray }) => {
 
+  console.log(matchesArray, 'from match card')
   // display embedded URL link, player, title, views, rating, comments
   // toggle to display comments from hidden/none
 
