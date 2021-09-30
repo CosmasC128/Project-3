@@ -1,22 +1,21 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
-const MatchCard = ({ matchesArray }) => {
-  // interact with database for title, url, and fire rating, match ID as well
+const MatchCard = ({ id, title, url, avgRating }) => {
+  // interact with database for title, url, and fire avgRating, match ID as well
 
-  const title = 'game 5'
-  const image = 'blah blah picture'
-  const rating = '65%'
-
-  console.log(matchesArray, 'from match card')
   //provide a link to the individual match
   // link + ID
   // api/matches/id -> links to individual match page
 
   return (<>
-    <div className="cardWrapper">one match card</div>
-    <div>{title}</div>
-    <div>{image}</div>
-    <div>{rating}</div>
+    <div className="cardWrapper">
+      <Link to={`/matches/${ id }`}>
+        <div>{ title }</div>
+        <iframe width="560" height="315" src={url} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+        <div>Fire Rating: {avgRating}%</div>
+      </Link>  
+    </div>
   </>)
 }
 export default MatchCard

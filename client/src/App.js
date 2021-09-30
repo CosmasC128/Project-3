@@ -35,7 +35,7 @@ const  App = () => {
   }, [])
 
   const matchesArray = Object.values({ ...matches })
-
+  // console.log(matchesArray, 'from the app.js')
   if (matches){
     console.log(matchesArray, 'from the app.js')
     // console.log(matchTitle)
@@ -51,11 +51,11 @@ const  App = () => {
         <Route exact path="/matches">
           <Matches matchesArray={matchesArray} />
         </Route>
-        <Route exact path="/matches/matchCard">
+        <Route exact path="/matches/MatchCard">
           <MatchCard matchesArray={matchesArray} />
         </Route>
         <Route exact path="/matches/:id">
-          <Match matchesArray={matchesArray} />
+          <Match />
         </Route>
         <Route exact path="/login">
           <Login />
