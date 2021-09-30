@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import axios from 'axios'
 
 import NavBar from './components/NavBar.js'
 import Home from './components/Home.js'
@@ -20,6 +21,27 @@ import Register from './components/auth/Register.js'
 // }
 
 const  App = () => {
+  
+  
+  const [ matches, setMatches ] = useState([])
+
+  useEffect(() => {
+    const getData = async () => {
+      const { data } = await axios.get('/api/matches')
+      setMatches(data)
+    }
+    getData()
+  }, [])
+
+  // const match = { ...matches[0] }
+  // const matchTitle = match.title
+  const matchesArray = Object.values({ ...matches })
+
+  if (matches){
+    console.log(matchesArray)
+    // console.log(matchTitle)
+  }
+  
   return (
     <BrowserRouter>
       <NavBar /> 
