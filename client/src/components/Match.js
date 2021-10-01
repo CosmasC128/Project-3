@@ -16,7 +16,10 @@ const Match = ({ matchesArray }) => {
   const url = match.url
   const avgRating = match.avgRating
   const views = match.views
+  
   const comments = match.comments
+
+  //need to update views on visit, then save to database
 
   return (<>
     <div>Watch your favourite match: {id}</div>
