@@ -26,7 +26,7 @@ const startServer = async () => {
     server.timeout = 1000
 
   } catch (err) {
-    console.log("Something went wrong - couldn't connect")
+    console.log('Something went wrong - couldnt connect')
     console.log(err)
   }
 }
