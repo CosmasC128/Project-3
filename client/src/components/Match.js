@@ -16,7 +16,10 @@ const Match = ({ matchesArray }) => {
   const url = match.url
   const avgRating = match.avgRating
   const views = match.views
+  
   const comments = match.comments
+
+  //need to update views on visit, then save to database
 
   return (<>
     <div>Watch your favourite match: {id}</div>
@@ -24,7 +27,7 @@ const Match = ({ matchesArray }) => {
     <div>Fire Rating: {avgRating}</div>
     <div>Views: {views}</div>
     { comments ? comments.map(comment => { 
-      return <div key={comment._id}>{comment.text} comment found</div> 
+      return <div key={comment._id}>{comment.text} comment found </div> 
     })
       :
       <div>No comments yet</div> }
