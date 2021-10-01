@@ -20,9 +20,9 @@ const matchSchema = new mongoose.Schema({
   })
 
   //! FIRE RATING - votes / views
-  matchSchema.virtual('avgRating')
+  matchSchema.virtual('rating')
   .get(function(){
-    return ((this.votes / this.views) * 100).toFixed(0)
+    return Number(((this.votes / this.views) * 100).toFixed(0))
   })
 
   matchSchema.virtual('thumbNail')

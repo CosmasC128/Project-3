@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const MatchCard = ({ id, title, avgRating, thumbNail }) => {
+const MatchCard = ({ id, title, rating, thumbNail }) => {
   // interact with database for title, url, and fire avgRating, match ID as well
 
   //provide a link to the individual match
@@ -13,7 +13,7 @@ const MatchCard = ({ id, title, avgRating, thumbNail }) => {
       <Link to={`/matches/${ id }`}>
         <div>{ title }</div>
         <img src={thumbNail} alt="you fucked up"></img>
-        <div>Fire Rating: {avgRating}%</div>
+        <div>Fire Rating: {rating}%</div>
       </Link>  
     </div>
   </>)

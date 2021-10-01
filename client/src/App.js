@@ -22,18 +22,15 @@ const  App = () => {
 
   useEffect(() => {
     const getData = async () => {
-      const { data } = await axios.get('/api/matches')
-      setMatches(data)
+      try {
+        const { data } = await axios.get('/api/matches')
+        setMatches(Object.values({ ...data }))
+      } catch (error) {
+        console.log(error)
+      }
     }
     getData()
   }, [])
-
-  const matchesArray = Object.values({ ...matches })
-  // console.log(matchesArray, 'from the app.js')
-  // if (matches){
-  //   console.log(matchesArray, 'from the app.js')
-  //   // console.log(matchTitle)
-  // }
   
   return (
     <BrowserRouter>
@@ -43,13 +40,13 @@ const  App = () => {
           <Home />
         </Route>
         <Route exact path="/matches">
-          <Matches matchesArray={matchesArray} />
+          <Matches matchesArray={matches} />
         </Route>
         <Route exact path="/matches/MatchCard">
-          <MatchCard matchesArray={matchesArray} />
+          <MatchCard matchesArray={matches} />
         </Route>
         <Route exact path="/matches/:id">
-          <Match matchesArray={matchesArray} />
+          <Match matchesArray={matches} />
         </Route>
         <Route exact path="/login">
           <Login />
