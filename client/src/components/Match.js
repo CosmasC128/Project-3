@@ -22,85 +22,7 @@ const Match = ({ matchesArray }) => {
   
 
   //need to update views on visit, then save to database
-
-
-
-  const [formData, setFormData] = useState({
-    text: '',
-    rating: '',
-    owner: '',
-
-  })
-
-  const handleChange = (event) => {
-    const newComment = { ...formData, [event.target.name]: event.target.value }
-    setFormData(newComment)
-  }
-  console.log('form daaaa ==>', formData)
-
-
-  const handleSubmit = async () => {
-    try {
-      await axios.post(
-        `/api/matches/${id}/comments`,
-        formData,
-        {
-          headers: { Authorization: `Bearer ${getTokenFromLocalStorage()}` },
-        }
-      )
-    } catch (err) {
-      console.log(err)  
-    }
-  }
-
-  const getCommentOwner = async () => {
-    try {
-      await axios.get(
-        `/api/matches/${id}/comments`,
-        formData,
-        {
-          headers: { Authorization: `Bearer ${getTokenFromLocalStorage()}` },
-        }
-      )
-    } catch (err) {
-      console.log(err)  
-    }
-  }
-
-  console.log('comments ===>', comments)
-  
-  return (
-    
-    <>
-
-      <div>Watch your favourite match: {id}</div>
-      <iframe width="560" height="315" src={url} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
-      <div>Fire Rating: {avgRating}</div>
-      <div>Views: {views}</div>
-      { comments ? comments.map(comment => { 
-        return <div key={comment._id}>{comment.text}</div> 
-      })
-      
-        :
-        <div>No comments yet</div> }
-    
-      {
-        <form onSubmit={handleSubmit}>
-          <textarea
-            type="text" 
-            placeholder="Write a comment... " 
-            name="text" 
-            onChange={handleChange}
-            value={formData.text}
-          >
-          </textarea>
-          <button>Submit</button>
-        </form>}
-        
-    </>
-  )
-
-   //Button functionality
+  //Button functionality
   //set the votes equal to the database vote total
   let votes = match.votes
   //handle the click event and for the fire button
@@ -117,18 +39,17 @@ const Match = ({ matchesArray }) => {
       console.log('votes--->', votes)
     }  
   }
+  
+  return (
+    
+    <>
 
-  return (<>
-    <div>Watch your favourite match: {id}</div>
-    <iframe width="560" height="315" src={url} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
-    <div>Fire Rating: {rating}</div>
-    <div>Views: {views}</div>
-    { comments ? comments.map(comment => { 
-      return <div key={comment._id}>{comment.text} comment found </div> 
-    })
-      :
-      <div>No comments yet</div> }
-    <div className='fireBtn'><button className="btn btn-primary" type="submit" onClick={handleClick}>🔥 Fire 🔥</button></div>
-  </>)
+      <div>Watch your favourite match: {id}</div>
+      <iframe width="560" height="315" src={url} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+      <div>Fire Rating: {avgRating}</div>
+      <div>Views: {views}</div>
+    </>
+  )
+
 }
 export default Match
