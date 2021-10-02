@@ -33,3 +33,18 @@ export const loginUser = async (req, res) => {
   }
 
 }
+
+// GET USERNAME FOR COMMENTS
+export const getCommentOwner = async (req, res) => {
+  try {
+    const { id } = req.params
+    const commentOwner = await User.findById(id)
+    console.log(commentOwner)
+
+    return res.status(200).json(commentOwner)
+  } catch (err) {
+    console.log('Error finding single Match')
+    console.log(err)
+    return res.status(404).json({ message: 'match not found', errors: err })
+  }
+}

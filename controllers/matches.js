@@ -71,7 +71,7 @@ export const getSingleMatch = async (req, res) => {
 export const createComment = async (req, res) => {
   const { id } = req.params
   try {
-    const match = await Match.findById(id) // Find match with id in params
+    const match = await Match.findById(id).populate('owner').populate('comments.owner') // Find match with id in params with owner and comment owner
     if (!match) throw new Error()
     const newComment = { ...req.body, owner: req.currentUser._id } // Creating a Comment based on the req.body and the req.currentUser
     match.comments.push(newComment) // Pushing Comment to the Comments array on the match document
@@ -108,3 +108,5 @@ export const deleteComment = async (req, res) => {
     return res.status(404).json(err.message)
   }
 }
+
+

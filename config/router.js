@@ -1,6 +1,6 @@
 import express from 'express'
 import { getAllMatches, createMatch, deleteMatch, getSingleMatch, createComment, deleteComment } from '../controllers/matches.js' // Import our controllers
-import { registerUser, loginUser } from '../controllers/auth.js'
+import { registerUser, loginUser, getCommentOwner } from '../controllers/auth.js'
 import { secureRoute } from './secureRoute.js'
 
 const router = express.Router()
@@ -18,7 +18,8 @@ router.route('/matches/:id')
 // ~~~~~~~~~
 
 router.route('/matches/:id/comments')
-  .post(secureRoute, createComment) 
+  .post(secureRoute, createComment)
+  .get(getCommentOwner)
 
 router.route('/matches/:id/comments/:commentId')
   .delete(secureRoute, deleteComment)
@@ -29,6 +30,6 @@ router.route('/login')
   .post(loginUser)
 
 router.route('/register')
-.post(registerUser)
+  .post(registerUser)
 
-  export default router
+export default router
