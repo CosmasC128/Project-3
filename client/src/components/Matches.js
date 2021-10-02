@@ -10,26 +10,33 @@ const Matches = ({ matchesArray }) => {
 
   const [ filteredMatches, setFilteredMatches ] = useState([])
   const [ filters, setFilters ] = useState({ searchTerm: '' })
+  const [ sortBy, setSortBy ] = useState('title')
+  const [ sortedArray, setSortedArray ] = useState([])
 
-  // Handle updates to select and text input
   const handleFilterChange = (event) => {
     const newObj = { ...filters, [event.target.name]: event.target.value }
     setFilters(newObj)
   }
 
-  // Listening for updates on Matches and filters and updating filteredMatches
+  const handleSortBy = (event) => {
+    setSortBy(event.target.value)
+  }
+  useEffect(() => {
+    setSortedArray(( filteredMatches.length ? filteredMatches : matchesArray ).sort((a,b)=> (a[sortBy] > b[sortBy] ? 1 : -1)))
+  }, [sortBy, filteredMatches, matchesArray])
+
   useEffect(() => {
     const regexSearch = new RegExp(filters.searchTerm, 'i')
-    setFilteredMatches(matchesArray.filter(match => {
+    setFilteredMatches(sortedArray.filter(match => {
       return regexSearch.test(match.title)
     }))
-  }, [filters, matchesArray])
+  }, [filters])
 
   return (<>
     <div>See all the Matches!</div>
     <div className="row">
-      <Filters handleFilterChange={handleFilterChange} {...filters}/>
-      { ( filters.searchTerm !== '' ? filteredMatches : matchesArray ).map(match => { 
+      <Filters handleFilterChange={handleFilterChange} handleSortBy={handleSortBy} {...filters}/>
+      { sortedArray.length && sortedArray.map(match => { 
         return <MatchCard key={match.id} { ...match } />
       })}
     </div>

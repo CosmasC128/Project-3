@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { getTokenFromLocalStorage } from '../helpers/auth.js'
-import { getCommentOwner } from '../../../controllers/auth.js'
 import axios from 'axios'
 
 const Match = ({ matchesArray }) => {
@@ -54,6 +53,20 @@ const Match = ({ matchesArray }) => {
     }
   }
 
+  const getCommentOwner = async () => {
+    try {
+      await axios.get(
+        `/api/matches/${id}/comments`,
+        formData,
+        {
+          headers: { Authorization: `Bearer ${getTokenFromLocalStorage()}` },
+        }
+      )
+    } catch (err) {
+      console.log(err)  
+    }
+  }
+
   console.log('comments ===>', comments)
   
   return (
@@ -79,12 +92,43 @@ const Match = ({ matchesArray }) => {
             name="text" 
             onChange={handleChange}
             value={formData.text}
-            { ...getCommentOwner() }
           >
           </textarea>
           <button>Submit</button>
         </form>}
+        
     </>
   )
+
+   //Button functionality
+  //set the votes equal to the database vote total
+  let votes = match.votes
+  //handle the click event and for the fire button
+  const [clicked, setClicked] = useState(false)
+  function handleClick(e) {
+    if (!clicked) {
+      setClicked(true)
+      // e.preventDefault()
+      console.log('You clicked fire 🔥')
+      console.log(e)
+      //increment votes
+      votes++
+      //send votes value back into match object in database, and then re-render votes total if not whole page
+      console.log('votes--->', votes)
+    }  
+  }
+
+  return (<>
+    <div>Watch your favourite match: {id}</div>
+    <iframe width="560" height="315" src={url} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+    <div>Fire Rating: {rating}</div>
+    <div>Views: {views}</div>
+    { comments ? comments.map(comment => { 
+      return <div key={comment._id}>{comment.text} comment found </div> 
+    })
+      :
+      <div>No comments yet</div> }
+    <div className='fireBtn'><button className="btn btn-primary" type="submit" onClick={handleClick}>🔥 Fire 🔥</button></div>
+  </>)
 }
 export default Match

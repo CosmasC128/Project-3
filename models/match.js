@@ -15,17 +15,17 @@ const matchSchema = new mongoose.Schema({
   owner: { type: mongoose.Schema.ObjectId, ref: 'User', required: true }, // our relationship(!) SOMETHING FUCKY - ADDING ID OF MATCH AND NOT ADMIN
   // ObjectId relates to the User model, and is one specific user's ID
   comments: [commentSchema]
-  }, {
-    timestamps: true
-  })
+}, {
+  timestamps: true
+})
 
-  //! FIRE RATING - votes / views
-  matchSchema.virtual('avgRating')
+//! FIRE RATING - votes / views
+matchSchema.virtual('avgRating')
   .get(function(){
     return ((this.votes / this.views) * 100).toFixed(0)
   })
 
-  matchSchema.virtual('thumbNail')
+matchSchema.virtual('thumbNail')
   .get(function(){
     return `https://img.youtube.com/vi/${this.url.slice(30)}/default.jpg`
   })
