@@ -11,8 +11,8 @@ const MatchCard = ({ id, title, rating, views, thumbNail }) => {
   return (<>
     <div className="cardWrapper">
       <Link to={`/matches/${ id }`}>
-        <div>{ title.slice(0, -27) }</div>
-        <img src={thumbNail} alt="you fucked up"></img>
+        <div>{ title }</div>
+        <img src={thumbNail} alt="failure to load image"></img>
         <div className="matchCardData" style={{ display: 'flex' }}>
           <div>Rating: {rating}% </div>
           <div>Views: {views}</div>

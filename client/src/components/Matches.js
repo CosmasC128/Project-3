@@ -5,7 +5,7 @@ import MatchCard from './MatchCard.js'
 const Matches = ({ matchesArray }) => {
   const [ searchMatches, setSearchMatches ] = useState([])
   const [ filters, setFilters ] = useState({ searchTerm: '' })
-  const [ sortBy, setSortBy ] = useState('title')
+  const [ sortBy, setSortBy ] = useState('createdAt')
   const [ sortedArray, setSortedArray ] = useState([])
 
   // cosmas - notes to myself - add DATE as default sort
@@ -19,7 +19,7 @@ const Matches = ({ matchesArray }) => {
   }
 
   const whichSort = (array, sortBy) => {
-    if (sortBy === 'views' || sortBy === 'rating'){
+    if (sortBy === 'views' || sortBy === 'rating' || sortBy === 'createdAt'){
       return array.sort((a,b)=> (a[sortBy] < b[sortBy] ? 1 : -1))
     } else {
       return array.sort((a,b)=> (a[sortBy] > b[sortBy] ? 1 : -1))

@@ -6,9 +6,10 @@ const Filters = ({ handleFilterChange, handleSortBy, sortBy, searchTerm }) => {
       <div className="filters d-flex justify-content-around" style={{ marginBottom: '40px' }}>
         <input onChange={ handleFilterChange } name="searchTerm" value={ searchTerm } placeholder=' search matches'/>
         <select onChange={handleSortBy} name="sortBy" value={sortBy}>
-          <option value="title">Title</option>
+          <option value="createdAt">Date</option>
           <option value="views">Views</option>
           <option value="rating">Rating</option>
+          <option value="title">Title</option>
         </select>
       </div>
     </>
