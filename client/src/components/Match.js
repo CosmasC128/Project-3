@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { getTokenFromLocalStorage } from './helpers/auth.js'
+import { getTokenFromLocalStorage } from '../helpers/auth.js'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
 

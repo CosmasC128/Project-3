@@ -16,7 +16,7 @@ const NavBar = () => {
     const currentTime = Math.round(Date.now() / 1000)
     return currentTime < payload.exp
   }
-  console.log('User is authenticated ->', userIsAuthenticated())
+  // console.log('User is authenticated ->', userIsAuthenticated())
 
   const handleLogout = () => {
     window.localStorage.removeItem('token')
