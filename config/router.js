@@ -1,5 +1,5 @@
 import express from 'express'
-import { getAllMatches, createMatch, deleteMatch, getSingleMatch, createComment, deleteComment } from '../controllers/matches.js' // Import our controllers
+import { getAllMatches, createMatch, deleteMatch, getSingleMatch, addFire, createComment, deleteComment } from '../controllers/matches.js' // Import our controllers
 import { registerUser, loginUser } from '../controllers/auth.js'
 import { secureRoute } from './secureRoute.js'
 
@@ -14,6 +14,7 @@ router.route('/matches')
 router.route('/matches/:id')
   .get(getSingleMatch)  
   .delete(secureRoute, deleteMatch) 
+  .put(addFire)
 
 // ~~~~~~~~~
 

@@ -4,7 +4,6 @@ import { useParams } from 'react-router-dom'
 import axios from 'axios'
 
 const Match = ({ matchesArray }) => {
-  
   // display embedded URL link, player, title, views, rating, comments
   // toggle to display comments from hidden/none
   const { id } = useParams()
@@ -14,45 +13,41 @@ const Match = ({ matchesArray }) => {
       match = matchesArray[i]
     }
   }
-  
+
   const title = match.title
   const url = match.url
-  const rating = match.rating
   const views = match.views
   const comments = match.comments
-  let votes = match.votes // replace with database get later
+  let votes = match.votes
 
-
-  //Button functionality
-  //set the votes equal to the database vote total
-  //need to update views on visit, then save to database
-  //handle the click event and for the fire button
+  // *** BUTTON CODE
+  //need to update VIEWS on VISIT, then save to database
   const [clicked, setClicked] = useState(false)
-  function handleClick(e) {
+  const [count, setCount] = useState(0)
+
+  const handleClick = async () => {
     if (!clicked) {
       setClicked(true)
-      // e.preventDefault()
-      console.log('You clicked fire 🔥')
-      console.log(e)
-      //increment votes
       votes++
-      //send votes value back into match object in database, and then re-render votes total if not whole page
-      console.log('votes--->', votes)
-    }  
+      await axios.put(`/api/matches/${id}`, { votes: votes })
+      const match = await axios.get(`/api/matches/${id}`)
+      setCount(match.data.votes)
+    } else {
+      console.log('handle click error')
+    }
   }
 
+  // *** COMMENT CODE
   const [formData, setFormData] = useState({
     text: '',
     rating: '',
     owner: '',
-
   })
 
   const handleChange = (event) => {
     const newComment = { ...formData, [event.target.name]: event.target.value }
     setFormData(newComment)
   }
-  // console.log('form daaaa ==>', formData)
 
   const handleSubmit = async () => {
     try {
@@ -67,14 +62,13 @@ const Match = ({ matchesArray }) => {
       console.log(err)  
     }
   }
-  // console.log('comments ===>', comments)
 
   return (<>
     <div className="playerWrapper">
       <div>{ title }</div>
       <iframe width="560" height="315" src={url} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
       <div className="fireWrap">
-        <div>Fire Rating: {rating}</div>
+        <div>Fire Rating: { count ? count / views * 100 : match.votes / views * 100} %</div>
         <div className='fireBtn'><button className="btn btn-primary" type="submit" onClick={handleClick}>🔥 Fire 🔥</button></div>
       </div>
       <div>Views: {views}</div>
@@ -97,4 +91,5 @@ const Match = ({ matchesArray }) => {
     </form>
   </>)
 }
+
 export default Match

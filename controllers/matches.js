@@ -66,6 +66,17 @@ export const getSingleMatch = async (req, res) => {
   }
 }
 
+export const addFire = async (req, res) => {
+  const { id } = req.params
+  try {
+    const likes = await Match.findOneAndUpdate({ _id: id }, { ...req.body })
+    return res.status(202).json(likes)
+  } catch (err) {
+    console.log(err, 'RIP--->')
+    return res.status(404).json(err.message)
+  }
+}
+
 // ~~~~~ comment stuff
 // router.route('/matches/:id/comments')
 export const createComment = async (req, res) => {

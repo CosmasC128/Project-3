@@ -8,9 +8,7 @@ const Matches = ({ matchesArray }) => {
   const [ sortBy, setSortBy ] = useState('title')
   const [ sortedArray, setSortedArray ] = useState([])
 
-  // cosmas - notes to myself - if the sort by is date, sort newest to old (add date as default)
-  // if sort is by title, ascending alphabetical (a-z?)
-  // if sort is by rating, sort 100  - 0
+  // cosmas - notes to myself - add DATE as default sort
 
   const handleFilterChange = (event) => {
     const newObj = { ...filters, [event.target.name]: event.target.value }
