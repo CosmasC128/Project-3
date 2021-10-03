@@ -20,14 +20,21 @@ const Matches = ({ matchesArray }) => {
     setSortBy(event.target.value)
   }
 
-  useEffect(() => {
-    setSortedArray(matchesArray.sort((a,b)=> (a[sortBy] > b[sortBy] ? 1 : -1)))
-  }, [sortBy, matchesArray])
+  const whichSort = (array, sortBy) => {
+    if (sortBy === 'views' || sortBy === 'rating'){
+      return array.sort((a,b)=> (a[sortBy] < b[sortBy] ? 1 : -1))
+    } else {
+      return array.sort((a,b)=> (a[sortBy] > b[sortBy] ? 1 : -1))
+    }
+  }
 
+  useEffect(() => {
+    setSortedArray(whichSort(matchesArray, sortBy))
+  }, [sortBy, matchesArray])
 
   useEffect(() => {
     const regexSearch = new RegExp(filters.searchTerm, 'i')
-    setSearchMatches((sortedArray ? sortedArray : matchesArray.sort((a,b)=> (a[sortBy] > b[sortBy] ? 1 : -1))).filter(match => {
+    setSearchMatches((sortedArray ? sortedArray : whichSort(matchesArray, sortBy)).filter(match => {
       return regexSearch.test(match.title)
     }))
   }, [filters, sortBy, sortedArray, matchesArray])

@@ -30,7 +30,6 @@ const NavBar = () => {
     <div className='navbar'>
       <div><Link to="/" >Home</Link></div>
       <div><Link to="/matches" >Matches</Link></div>
-      <div><Link to="/matches/MatchCard" >MatchCard</Link></div>
       <div>
         {
           userIsAuthenticated() ? 
