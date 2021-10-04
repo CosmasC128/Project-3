@@ -30,6 +30,17 @@ export const createMatch = async (req, res) => {
   }
 }
 
+export const updateMatch = async (req, res) => {
+  const { id } = req.params
+  try {
+    const views = await Match.findOneAndUpdate({ _id: id }, { ...req.body } )
+    return res.status(200).json(views)
+  } catch (err) {
+    console.log(err)
+    return res.status(404).json(err.message)
+  }
+}
+
 // delete for admins in /matches
 export const deleteMatch = async (req, res) => {
   const { id } = req.params

@@ -16,9 +16,26 @@ const Match = ({ matchesArray }) => {
 
   const title = match.title
   const url = match.url
-  const views = match.views
+  let views = match.views
   const comments = match.comments
   let votes = match.votes
+
+
+  // *** ONLOAD VIEW UPDATE BY ONE
+  // save to database, refresh the page
+  const [viewsCount, setViewsCount] = useState()
+  
+  const getData = async () => {
+    if (views > 0) {
+      views++
+      await axios.put(`/api/matches/${id}`, { views: views })
+      const newViews = await axios.get(`/api/matches/${id}`)
+      setViewsCount(newViews.data.views)
+    } else {
+      console.log('Not 1')
+    }
+  }
+  getData()
 
   // *** BUTTON CODE
   //need to update VIEWS on VISIT, then save to database
@@ -71,7 +88,7 @@ const Match = ({ matchesArray }) => {
         <div>Fire Rating: { count ? count / views * 100 : match.votes / views * 100} %</div>
         <div className='fireBtn'><button className="btn btn-primary" type="submit" onClick={handleClick}>🔥 Fire 🔥</button></div>
       </div>
-      <div>Views: {views}</div>
+      <div>Views: {viewsCount}</div>
     </div>
     { comments ? comments.map(comment => { 
       return <div key={comment._id}>{comment.text}</div> 
