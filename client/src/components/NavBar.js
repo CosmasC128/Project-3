@@ -16,7 +16,7 @@ const NavBar = () => {
     const currentTime = Math.round(Date.now() / 1000)
     return currentTime < payload.exp
   }
-  console.log('User is authenticated ->', userIsAuthenticated())
+  // console.log('User is authenticated ->', userIsAuthenticated())
 
   const handleLogout = () => {
     window.localStorage.removeItem('token')
@@ -30,7 +30,6 @@ const NavBar = () => {
     <div className='navbar'>
       <div><Link to="/" >Home</Link></div>
       <div><Link to="/matches" >Matches</Link></div>
-      <div><Link to="/matches/MatchCard" >MatchCard</Link></div>
       <div>
         {
           userIsAuthenticated() ? 
