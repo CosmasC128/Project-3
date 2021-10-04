@@ -1,5 +1,4 @@
 import Match from '../models/match.js'
-// import User from '../models/user.js'
 
 //getAllMatches, createMatch, deleteMatch, 
 // methods admin in /matches

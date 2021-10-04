@@ -1,8 +1,24 @@
 import Filters from './Filters'
 import React, { useState, useEffect } from 'react'
 import MatchCard from './MatchCard.js'
+import axios from 'axios'
 
-const Matches = ({ matchesArray }) => {
+const Matches = () => {
+
+  const [ matches, setMatches ] = useState([])
+
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const { data } = await axios.get('/api/matches')
+        setMatches(Object.values({ ...data }))
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    getData()
+  }, [])
+
   const [ searchMatches, setSearchMatches ] = useState([])
   const [ filters, setFilters ] = useState({ searchTerm: '' })
   const [ sortBy, setSortBy ] = useState('createdAt')
@@ -27,15 +43,15 @@ const Matches = ({ matchesArray }) => {
   }
 
   useEffect(() => {
-    setSortedArray(whichSort(matchesArray, sortBy))
-  }, [sortBy, matchesArray])
+    setSortedArray(whichSort(matches, sortBy))
+  }, [sortBy, matches])
 
   useEffect(() => {
     const regexSearch = new RegExp(filters.searchTerm, 'i')
-    setSearchMatches((sortedArray ? sortedArray : whichSort(matchesArray, sortBy)).filter(match => {
+    setSearchMatches((sortedArray ? sortedArray : whichSort(matches, sortBy)).filter(match => {
       return regexSearch.test(match.title)
     }))
-  }, [filters, sortBy, sortedArray, matchesArray])
+  }, [filters, sortBy, sortedArray, matches])
 
   return (<>
     <div>See all the Matches!</div>

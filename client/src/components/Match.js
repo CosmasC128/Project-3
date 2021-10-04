@@ -1,18 +1,27 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { getTokenFromLocalStorage } from '../helpers/auth.js'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
 
-const Match = ({ matchesArray }) => {
+const Match = () => {
   // display embedded URL link, player, title, views, rating, comments
   // toggle to display comments from hidden/none
   const { id } = useParams()
-  let match = {}
-  for (let i = 0; i < matchesArray.length;i++){
-    if (matchesArray[i].id === id) {
-      match = matchesArray[i]
+  const [ match, setMatch ] = useState([])
+
+  useEffect(() => {
+    const getMatch = async () => {
+      try {
+        const matchGet = await axios.get(`/api/matches/${id}`)
+        setMatch(matchGet.data)
+        // console.log(matchGet.data, 'from get match function use effect')
+      } catch (error) {
+        console.log(error)
+      }
     }
-  }
+    getMatch()
+  }, [id])
+  
 
   const title = match.title
   const url = match.url
@@ -20,12 +29,14 @@ const Match = ({ matchesArray }) => {
   const comments = match.comments
   let votes = match.votes
 
+  // console.log(match, 'if it worked this isn\'t empty')
+  // console.log(title, url, views, comments, votes, 'loads of data')  
 
-  // *** ONLOAD VIEW UPDATE BY ONE
-  // save to database, refresh the page
+  // *** VIEWS CODE
+
   const [viewsCount, setViewsCount] = useState()
   
-  const getData = async () => {
+  const getViews = async () => {
     if (views > 0) {
       views++
       await axios.put(`/api/matches/${id}`, { views: views })
@@ -35,7 +46,9 @@ const Match = ({ matchesArray }) => {
       console.log('Not 1')
     }
   }
-  getData()
+  getViews()
+
+
 
   // *** BUTTON CODE
   //need to update VIEWS on VISIT, then save to database
