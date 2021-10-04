@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+<<<<<<< HEAD
 import { getTokenFromLocalStorage } from '../helpers/auth.js'
 import { useParams } from 'react-router-dom'
 <<<<<<< HEAD
@@ -6,6 +7,10 @@ import { getTokenFromLocalStorage } from '../helpers/auth.js'
 =======
 >>>>>>> 1e7e0918f5b59b57a319e8d01dff7eee9cd183a1
 import axios from 'axios'
+=======
+import { useParams } from 'react-router-dom'
+import CommentCard from './comments/CommentCard.js'
+>>>>>>> development
 
 const Match = ({ matchesArray }) => {
   // display embedded URL link, player, title, views, rating, comments
@@ -23,10 +28,17 @@ const Match = ({ matchesArray }) => {
 <<<<<<< HEAD
   const avgRating = match.avgRating
   const views = match.views
+<<<<<<< HEAD
   const comments = match.comments
   
 
   //need to update views on visit, then save to database
+=======
+  let votes = match.votes // replace with database get later
+
+
+
+>>>>>>> development
   //Button functionality
   //set the votes equal to the database vote total
 =======
@@ -52,6 +64,7 @@ const Match = ({ matchesArray }) => {
     }
   }
 
+<<<<<<< HEAD
   // *** COMMENT CODE
   const [formData, setFormData] = useState({
     text: '',
@@ -119,6 +132,25 @@ const Match = ({ matchesArray }) => {
     </form>
   </>)
 >>>>>>> 1e7e0918f5b59b57a319e8d01dff7eee9cd183a1
+=======
+
+  // console.log('comments ===>', comments)
+
+  return (
+    <>
+      <div className="playerWrapper">
+        <div>{ title }</div>
+        <iframe width="560" height="315" src={url} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+        <div className="fireWrap">
+          <div>Fire Rating: {rating}</div>
+          <div className='fireBtn'><button className="btn btn-primary" type="submit" onClick={handleClick}>🔥 Fire 🔥</button></div>
+        </div>
+        <div>Views: {views}</div>
+      </div>
+      <CommentCard { ...match } />
+    </>
+  )
+>>>>>>> development
 }
 
 export default Match

@@ -66,27 +66,15 @@ export const getSingleMatch = async (req, res) => {
   }
 }
 
-export const addFire = async (req, res) => {
-  const { id } = req.params
-  try {
-    const likes = await Match.findOneAndUpdate({ _id: id }, { ...req.body })
-    return res.status(202).json(likes)
-  } catch (err) {
-    console.log(err, 'RIP--->')
-    return res.status(404).json(err.message)
-  }
-}
-
 // ~~~~~ comment stuff
 // router.route('/matches/:id/comments')
 export const createComment = async (req, res) => {
   const { id } = req.params
   try {
-    const match = await Match.findById(id).populate('owner').populate('comments.owner') // Find match with id in params with owner and comment owner
+    const match = await Match.findById(id) // Find match with id in params
     if (!match) throw new Error()
     const newComment = { ...req.body, owner: req.currentUser._id } // Creating a Comment based on the req.body and the req.currentUser
     match.comments.push(newComment) // Pushing Comment to the Comments array on the match document
-    
     await match.save()
     return res.status(200).json(match)
   } catch (err) {
@@ -119,5 +107,3 @@ export const deleteComment = async (req, res) => {
     return res.status(404).json(err.message)
   }
 }
-
-

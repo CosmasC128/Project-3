@@ -3,7 +3,11 @@ import React, { useState, useEffect } from 'react'
 import MatchCard from './MatchCard.js'
 
 const Matches = ({ matchesArray }) => {
+<<<<<<< HEAD
   const [ searchMatches, setSearchMatches ] = useState([])
+=======
+  const [ filteredMatches, setFilteredMatches ] = useState([])
+>>>>>>> development
   const [ filters, setFilters ] = useState({ searchTerm: '' })
   const [ sortBy, setSortBy ] = useState('title')
   const [ sortedArray, setSortedArray ] = useState([])
