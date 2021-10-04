@@ -29,6 +29,6 @@ router.route('/login')
   .post(loginUser)
 
 router.route('/register')
-.post(registerUser)
+  .post(registerUser)
 
-  export default router
+export default router

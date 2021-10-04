@@ -7,7 +7,6 @@ import MatchCard from './MatchCard.js'
 
 
 const Matches = ({ matchesArray }) => {
-
   const [ filteredMatches, setFilteredMatches ] = useState([])
   const [ filters, setFilters ] = useState({ searchTerm: '' })
   const [ sortBy, setSortBy ] = useState('title')
