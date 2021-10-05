@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { Link, useHistory, useLocation } from 'react-router-dom'
-import { getPayload } from '../helpers/auth'
+import { userIsAuthenticated } from '../helpers/auth'
 
 const NavBar = () => {
 
@@ -9,14 +9,6 @@ const NavBar = () => {
 
   useEffect(() => {
   }, [location.pathname])
-
-  const userIsAuthenticated = () => {
-    const payload = getPayload()
-    if (!payload) return
-    const currentTime = Math.round(Date.now() / 1000)
-    return currentTime < payload.exp
-  }
-  // console.log('User is authenticated ->', userIsAuthenticated())
 
   const handleLogout = () => {
     window.localStorage.removeItem('token')

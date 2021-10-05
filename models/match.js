@@ -2,7 +2,8 @@ import mongoose from 'mongoose'
 
 const commentSchema = new mongoose.Schema({ // because commentSchema referenced in matchSchema, commentSchema must come first
   text: { type: String, required: true, maxlength: 300 },
-  owner: { type: mongoose.Schema.ObjectId, ref: 'User', required: true }
+  owner: { type: mongoose.Schema.ObjectId, ref: 'User', required: true },
+  username: { type: String, ref: 'User', required: true }
 }, {
   timestamps: true
 })

@@ -11,3 +11,10 @@ export const getPayload = () => {
   // console.log('split token after atob', atob(splitToken[1]))
   return JSON.parse(atob(splitToken[1]))
 }
+
+export const userIsAuthenticated = () => {
+  const payload = getPayload()
+  if (!payload) return
+  const currentTime = Math.round(Date.now() / 1000)
+  return currentTime < payload.exp
+}

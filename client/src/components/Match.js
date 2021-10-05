@@ -1,22 +1,25 @@
 import React, { useState, useEffect } from 'react'
 import { getTokenFromLocalStorage } from '../helpers/auth.js'
 import { useParams } from 'react-router-dom'
+// import { userIsAuthenticated } from '../helpers/auth.js'
 import axios from 'axios'
+import CommentCard from './CommentCard.js'
 
 const Match = () => {
 
   const { id } = useParams()
   const [ match, setMatch ] = useState([])
+  
+  const getMatch = async () => {
+    try {
+      const matchGet = await axios.get(`/api/matches/${id}`)
+      setMatch(matchGet.data)
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   useEffect(() => {
-    const getMatch = async () => {
-      try {
-        const matchGet = await axios.get(`/api/matches/${id}`)
-        setMatch(matchGet.data)
-      } catch (error) {
-        console.log(error)
-      }
-    }
     getMatch()
   }, [id])
 
@@ -85,7 +88,8 @@ const Match = () => {
     setFormData(newComment)
   }
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (event) => {
+    event.preventDefault()
     try {
       await axios.post(
         `/api/matches/${id}/comments`,
@@ -94,10 +98,12 @@ const Match = () => {
           headers: { Authorization: `Bearer ${getTokenFromLocalStorage()}` },
         }
       )
+      getMatch()
     } catch (err) {
       console.log(err)  
     }
   }
+
   //usersVoted.includes(currentUserLoggedIn) swap this with 'true' below in the jsx under fire rating
   return (<>
     <div className="playerWrapper">
@@ -105,15 +111,16 @@ const Match = () => {
       <iframe width="560" height="315" src={url} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
       <div className="fireWrap">
         <div>Fire Rating: { count ? count / views * 100 : match.votes / views * 100} %</div>
-        { true ? <div>You've already voted.</div> : <div className='fireBtn'><button className="btn btn-primary" type="submit" onClick={handleClick}>🔥 Fire 🔥</button></div>}
+        <div className='fireBtn'><button className="btn btn-primary" type="submit" onClick={handleClick}>🔥 Fire 🔥</button></div>
       </div>
       <div>Views: {viewsCount}</div>
     </div>
     { comments ? comments.map(comment => { 
-      return <div key={comment._id}>{comment.text}</div> 
+      return <CommentCard key={comment._id} { ...comment } matchId={ id } getMatch={ getMatch }/>
     })
       :
-      <div>No comments yet</div> }
+      <div>No comments yet</div>
+    }
     <form onSubmit={handleSubmit}>
       <textarea
         type="text" 

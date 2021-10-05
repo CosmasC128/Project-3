@@ -94,7 +94,7 @@ export const createComment = async (req, res) => {
   try {
     const match = await Match.findById(id) // Find match with id in params
     if (!match) throw new Error()
-    const newComment = { ...req.body, owner: req.currentUser._id } // Creating a Comment based on the req.body and the req.currentUser
+    const newComment = { ...req.body, username: req.currentUser.username, owner: req.currentUser._id } // Creating a Comment based on the req.body and the req.currentUser
     match.comments.push(newComment) // Pushing Comment to the Comments array on the match document
     
     await match.save()
