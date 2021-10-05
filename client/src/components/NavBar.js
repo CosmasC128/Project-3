@@ -24,7 +24,6 @@ const NavBar = () => {
       try {
         const { data } = await axios.get(
           '/api/user',
-          // userId,
           {
             headers: { Authorization: `Bearer ${getTokenFromLocalStorage()}` },
           })
@@ -37,20 +36,19 @@ const NavBar = () => {
   }, [])
   // if user is logged in, should display logout button/code instead of login/register
   // background image and styling
-  console.log('UUUUUUUSEEEERERERER', user)
+  // console.log('UUUUUUUSEEEERERERER', user)
   return (
     <div className='navbar'>
       <div><Link to="/" >Home</Link></div>
       <div><Link to="/matches" >Matches</Link></div>
       <div>
         {
-          userIsAuthenticated() ? 
+          user.username === 'admin' ? 
             <div className="nav-item">
-              <Link to="/AdminUpload">Login Admin</Link>
+              <Link to="/AdminUpload">Admin Upload</Link>
             </div>
             :
             <>
-              <div></div>
             </>
         }
       </div>
