@@ -1,7 +1,6 @@
 import Match from '../models/match.js'
+import User from '../models/user.js'
 
-//getAllMatches, createMatch, deleteMatch, 
-// methods admin in /matches
 
 export const getAllMatches = async (_req, res) => {
   // Below is the mongoose find method. It just returns every document in a collection.
@@ -129,3 +128,26 @@ export const deleteComment = async (req, res) => {
     return res.status(404).json(err.message)
   }
 }
+
+export const getUsers = async (req, res) => {
+  try {
+    console.log(req.currentUser,  'current user console log')
+    const users = await User.find()
+    if (!users) throw new Error()
+    return res.status(200).json(users)
+  } catch (err){
+    console.log(err)
+    return res.status(404).json({ message: 'Not found' })
+  }
+} 
+
+export const getUser = async (req, res) => {
+  try {
+    const user = await User.findById(req.currentUser._id)
+    if (!user) throw new Error()
+    return res.status(200).json(user)
+  } catch (err){
+    console.log(err)
+    return res.status(404).json({ message: 'Not found' })
+  }
+} 

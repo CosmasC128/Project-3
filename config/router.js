@@ -1,11 +1,17 @@
 import express from 'express'
-import { getAllMatches, createMatch, deleteMatch, getSingleMatch, addFire, updateMatch, createComment, deleteComment } from '../controllers/matches.js' // Import our controllers
+import { getUser, getUsers, getAllMatches, createMatch, deleteMatch, getSingleMatch, addFire, updateMatch, createComment, deleteComment } from '../controllers/matches.js' // Import our controllers
 import { registerUser, loginUser } from '../controllers/auth.js'
 import { secureRoute } from './secureRoute.js'
 
 const router = express.Router()
 
 // ~~~~~~~~~
+
+router.route('/users')
+  .get(getUsers)
+
+router.route('/user')
+  .get(secureRoute, getUser)
 
 router.route('/matches') 
   .get(getAllMatches)

@@ -9,6 +9,7 @@ import Match from './components/Match.js'
 import MatchCard from './components/MatchCard.js'
 import CommentCard from './components/CommentCard.js'
 
+import AdminUpload from './components/AdminUpload.js'
 import Login from './components/auth/Login.js'
 import Register from './components/auth/Register.js'
 
@@ -35,6 +36,9 @@ const  App = () => {
         </Route>
         <Route exact path="/matches/:id/comments">
           <CommentCard />
+        </Route>
+        <Route exact path="/adminUpload">
+          <AdminUpload />
         </Route>
         <Route exact path="/login">
           <Login />
