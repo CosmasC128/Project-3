@@ -1,9 +1,48 @@
+@import url("https://fonts.googleapis.com/css?family=Rajdhani:600,700%7CRoboto:400,500,500i");
 
+// @font-face {
+//   font-family: 'Friz-Quadrata';
+//   src: url("/fonts/Friz-Quadrata/Friz-Quadrata-Std-Medium.otf") format("opentype");
+// }
+//user fonts
+root {
+  background-color: rgb(15, 15, 111);
+}
+body {
+  line-height: 24px;
+  font-size: 14px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  color: #777777; 
+}
 
+div .cardWrapper {
+  display: flex;
+  justify-content: center;
+}
 
+.thumbnail {
+  margin-left: 150px;
+  transition: transform 0.2s ease;
+}
 
+.thumbnail:hover {
+  transform: scale(1.1);
+}
+  
 
+.rating {
+  margin-left: 140px;
+}
+  
+.card {
+  transition: transform 0.2s ease;
+}
 
+.card:hover {
+  transform: scale(1.1);
+}
+  
 
 .fireBtn {
   display: flex;

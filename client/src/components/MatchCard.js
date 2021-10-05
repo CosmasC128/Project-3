@@ -16,10 +16,10 @@ const MatchCard = ({ id, title, rating, views, thumbNail }) => { //pull in users
   return (<>
     <div className="cardWrapper">
       <Link to={`/matches/${ id }`}>
-        <div>{ title }</div>
-        <img src={thumbNail} alt="failure to load image"></img>
+        <div>{ title.slice(0, -27) }</div>
+        <img className="thumbnail" src={thumbNail} alt="you fucked up"></img>
         <div className="matchCardData" style={{ display: 'flex' }}>
-          <div>Rating: {rating}% </div>
+          <div className="rating"> Rating: {rating}% </div>
           <div>Views: {views}</div>
         </div>  
       </Link>  
