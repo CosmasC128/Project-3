@@ -14,6 +14,8 @@ const matchSchema = new mongoose.Schema({
   votes: { type: Number, required: true },
   owner: { type: mongoose.Schema.ObjectId, ref: 'User', required: true }, // our relationship(!) SOMETHING FUCKY - ADDING ID OF MATCH AND NOT ADMIN
   // ObjectId relates to the User model, and is one specific user's ID
+  usersViewed: [],
+  usersVoted: [],
   comments: [commentSchema]
   }, {
     timestamps: true
