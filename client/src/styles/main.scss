@@ -76,7 +76,7 @@ a:hover{
 .bg {
   top:0;
   background-size: cover;
-  height: 100vh;
+  height: 96vh;
   margin: 0 auto;
   background-repeat: no-repeat;
   background: center;
@@ -321,7 +321,7 @@ iframe{
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 86vh;
+  height: 90vh;
 }
 
 .adminUploader {
@@ -330,15 +330,19 @@ iframe{
   border: 1px solid rgba(0, 0, 0, 0.60);
   border-radius: 10px;
   margin:20px;
+  margin-top: 80px;
   padding: 20px;
   background-color: #392b68;
   width: 50%;
+  min-width: 300px;
+  max-width: 550px;
 }
 
 .uploaderWrap{
   text-align: center;
   display: flex;
   flex-direction: column;
+  width: 90%;
 }
 
 .uploadTitle{
@@ -360,7 +364,10 @@ iframe{
   border-color: rgba(0, 0, 0, 0.60);
 }
 
-#uploadBtn{
+#uploadBtn {
+  width: 100%;
+  margin-top: 5px;
+  margin-left: 0px;
   background-color: #af8f4d;
   padding: 5px 10px 28px 10px;
   border-radius: 6px;
@@ -375,6 +382,25 @@ iframe{
   color: white;
   text-shadow: rgba(0, 0, 0, 0.694) 1px 1px;
   border-color: white;
+}
+
+.uploadLabel{
+  text-align: center;
+  width: 65px;
+}
+
+.uploaderItem {
+  display: flex;
+  flex-grow: 1;
+  text-align: center;
+  margin-right: 0;
+}
+
+.uploadField{
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+  justify-content: space-between;
 }
 
 .naughtyWrap{
@@ -468,13 +494,10 @@ iframe{
 // ~~~~~~~~~ register page
 
 .regPage{
-  height: 80vh;
   display: flex;
-  justify-content: center;
-}
-
-#regContainer{
-  width: 900px;
+  flex-direction: column;
+  align-items: center;
+  height: 90vh;
 }
 
 .regBox form{
@@ -485,8 +508,9 @@ iframe{
 }
 
 #regBox{
-  margin-top: 60px;
-  max-width: 700px;
+  margin-top: 80px;
+  max-width: 550px;
+  width: 60%;
 }
 
 #regForm{
@@ -539,9 +563,10 @@ iframe{
 // ~~~~~~~~~ login page
 
 .loginPage{
-  height: 80vh;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  height: 90vh;
 }
 
 .logBox form{
@@ -552,7 +577,8 @@ iframe{
 }
 
 .logContainer{
-  width: 900px;
+  width: 40%;
+  max-width: 600px;
   display: flex;
   justify-content: center;
 }
@@ -560,7 +586,7 @@ iframe{
 #logBox{
   display: flex;
   flex-grow: 1;
-  margin-top: 60px;
+  margin-top: 80px;
   max-width: 500px;
   max-height: 170px;
 }

@@ -53,10 +53,10 @@ const NavBar = () => {
           userIsAuthenticated() ? 
             <span id="navLinkLogout" onClick={handleLogout}>Logout</span>
             :
-            <div className="logReg">
+            <>
               <Link to="/login" id="navLink">Login</Link>
               <Link to="/register" id="navLink">Register</Link>
-            </div>
+            </>
         }
       </div>
     </div>

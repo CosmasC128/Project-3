@@ -55,8 +55,14 @@ const AdminUpload = () => {
           <div className="uploaderWrap">
             <h1 className="uploadTitle">Yay! More Videos!</h1>
             <form onSubmit={handleSubmit} id="uploadForm">
-              <input className="uploaderItem" type="text" placeholder="Title " name="title"  onChange={handleChange} value={updateForm.title}></input>
-              <input className="uploaderItem" type="text" placeholder="Url " name="url"  onChange={handleChange} value={updateForm.url}></input>
+              <div className="form-field uploadField">
+                <label htmlFor="password" className="uploadLabel">Username</label>
+                <input className="uploaderItem" type="text" placeholder="Title " name="title"  onChange={handleChange} value={updateForm.title}></input>
+              </div>
+              <div className="form-field uploadField">
+                <label htmlFor="password" className="uploadLabel">Password</label>
+                <input className="uploaderItem" type="text" placeholder="Url " name="url"  onChange={handleChange} value={updateForm.url}></input>
+              </div>
               <button className="uploaderItem" id="uploadBtn">SUBMIT</button>
             </form>
           </div>  
