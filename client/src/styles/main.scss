@@ -62,6 +62,8 @@
   background-color: #1a133d;
 }
 
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 .bg {
   /* Set rules to fill background */
   min-height: 100%;
@@ -90,48 +92,90 @@
   justify-content: center;
   margin-top: 200px;
   margin-left: 150px;
+  color: #af8f4d;
 }
 
-  div .cardWrapper {
-    display: flex;
-    justify-content: center;
-  }
+h2 {
+  display: flex;
+  justify-content: center;
+}
+.hl-item-inner {
+  width: 100px;
+  display: flex;
+  justify-content: space-between;
+  margin-left: 400px;
+}
+img {
+  display: flex;
+  flex-grow: 1;
+  height: 200px;
+    --tw-translate-x: 0;
+    --tw-translate-y: 0;
+    --tw-rotate: 0;
+    --tw-skew-x: 0;
+    --tw-skew-y: 0;
+    --tw-scale-x: 1;
+    --tw-scale-y: 1;
+    transform: skewX(12deg);
+    transform: translateX(var(--tw-translate-x)) translateY(var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+    transition-property: all;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+    opacity: 0.3;
+    transition: opacity 1s ease-in-out;
+    -moz-transition: opacity 1s ease-in-out;
+    -webkit-transition: opacity 1s ease-in-out;
+}
+
+img:hover {
+  transform: scale(1.5);
+  transform: skewX(12deg);
+  opacity: 1.0;
+  transition: opacity .55s ease-in-out;
+  -moz-transition: opacity .55s ease-in-out;
+  -webkit-transition: opacity .55s ease-in-out;
+}
+
+div .cardWrapper {
+  display: flex;
+  justify-content: center;
+}
 
 .thumbnail {
-  margin-left: 150px;
-  transition: transform 0.2s ease;
+margin-left: 150px;
+transition: transform 0.2s ease;
 }
 
 .thumbnail:hover {
-  transform: scale(1.1);
+transform: scale(1.1);
 }
-  
+
 
 .rating {
-  margin-left: 140px;
+margin-left: 140px;
 }
-  
+
 .card {
-  transition: transform 0.2s ease;
+transition: transform 0.2s ease;
 }
 
 .card:hover {
-  transform: scale(1.1);
+transform: scale(1.1);
 }
-  
 
 .fireBtn {
-  display: flex;
-  justify-content: center;
+display: flex;
+justify-content: center;
+background-color: #af8f4d;
 }
 
 .footer {
 display: flex;
 justify-content: center;
 padding-top: 300px;
-}
+} 
 
-// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ admin upload -> remember changes to the divs and class names
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ admin upload -> remember changes to the divs and class names ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .uploadPage{
   display: flex;
