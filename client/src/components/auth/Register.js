@@ -36,34 +36,34 @@ const Register = () => {
       console.log(errors)
     }
   }
-
+  
   return (
-    <div className="form-page">
-      <div className="container">
-        <div className="row">
-          <form onSubmit={handleSubmit} className="col-10 offset-1 col-md-6 offset-md-3 mt-4">
-            <h3>Register</h3>
-            <div className="form-field">
-              <label htmlFor="username">Username</label>
-              <input onInput={handleChange} type="text" name="username" placeholder="Username" value={formData.username} />
+    <div className="regPage">
+      <div id="regContainer">
+        <div className="regBox" id="regBox">
+          <form onSubmit={handleSubmit} id="regForm">
+            <h3 id="regTitle">REGISTRATION</h3>
+            <div className="form-field regField" >
+              <label htmlFor="username" className="regLabel">Username</label>
+              <input onInput={handleChange} className="regInputField" type="text" name="username" placeholder="Username" value={formData.username} />
               {errors.username && <p className="error">{errors.username}</p>}
             </div>
-            <div className="form-field">
-              <label htmlFor="email">Email</label>
-              <input onInput={handleChange} type="email" name="email" placeholder="Email" value={formData.email}/>
+            <div className="form-field regField">
+              <label htmlFor="email" className="regLabel">Email</label>
+              <input onInput={handleChange} className="regInputField" type="email" name="email" placeholder="Email" value={formData.email}/>
               {errors.email && <p className="error">{errors.email}</p>}
             </div>
-            <div className="form-field">
-              <label htmlFor="password">Password</label>
-              <input onInput={handleChange} type="password" name="password" placeholder="Password" value={formData.password} />
+            <div className="form-field regField">
+              <label htmlFor="password" className="regLabel">Password</label>
+              <input onInput={handleChange} className="regInputField" type="password" name="password" placeholder="Password" value={formData.password} />
               {errors.password && <p className="error">{errors.password}</p>}
             </div>
-            <div className="form-field">
-              <label htmlFor="passwordConfirmation">Password Confirmation</label>
-              <input onInput={handleChange} type="password" name="passwordConfirmation" placeholder="Password Confirmation"  value={formData.passwordConfirmation} />
+            <div className="form-field regField">
+              <label htmlFor="passwordConfirmation" className="regLabel">Confirmation</label>
+              <input onInput={handleChange} className="regInputField" type="password" name="passwordConfirmation" placeholder="Password Confirmation"  value={formData.passwordConfirmation} />
               {errors.passwordConfirmation && <p className="error">{errors.passwordConfirmation}</p>}
             </div>
-            <button className="btn btn-yellow w-100">Register</button>
+            <button className="btn btn-yellow w-100" id="regBtn">Register</button>
           </form>
         </div>
       </div>

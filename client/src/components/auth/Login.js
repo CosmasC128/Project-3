@@ -35,20 +35,20 @@ const Login = () => {
   }
 
   return (
-    <div className="form-page">
-      <div className="container">
-        <div className="row">
-          <form onSubmit={handleSubmit} className="col-10 offset-1 col-md-6 offset-md-3 mt-4">
-            <h3>Login</h3>
-            <div className="form-field">
-              <label htmlFor="email">Email</label>
+    <div className="loginPage">
+      <div className="logContainer">
+        <div className="logBox" id="logBox">
+          <form id="logForm" onSubmit={handleSubmit}>
+            <h3 id="logTitle">LOGIN</h3>
+            <div className="form-field logField">
+              <label htmlFor="email" className="logLabel">Email</label>
               <input onInput={handleChange} type="email" name="email" placeholder="Email" value={formData.email}/>
             </div>
-            <div className="form-field">
-              <label htmlFor="password">Password</label>
+            <div className="form-field logField">
+              <label htmlFor="password" className="logLabel">Password</label>
               <input onInput={handleChange} type="password" name="password" placeholder="Password" value={formData.password} />
             </div>
-            <button className="btn btn-yellow w-100">Login</button>
+            <button id="logBtn">Login</button>
           </form>
         </div>
       </div>

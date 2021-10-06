@@ -38,35 +38,33 @@ const NavBar = () => {
   // background image and styling
   // console.log('UUUUUUUSEEEERERERER', user)
   return (
-    <div className='navbar'>
-      <div><Link to="/" >Home</Link></div>
-      <div><Link to="/matches" >Matches</Link></div>
-      <div>
+    <div id='navbar'>
+      <div id="navwrap">
+        <div><Link to="/" id="navLink">Home</Link></div>
+        <div><Link to="/matches" id="navLink">Matches</Link></div>
         {
           user.username === 'admin' ? 
             <div className="nav-item">
-              <Link to="/AdminUpload">Admin Upload</Link>
+              <Link to="/AdminUpload" id="navLink">Admin Upload</Link>
             </div>
             :
             <>
             </>
         }
-      </div>
-      <div>
         {
           userIsAuthenticated() ? 
-            <div className="nav-item">
+            <div className="nav-item" id="navLinkLogout">
               <span onClick={handleLogout}>Logout</span>
             </div>
             :
-            <>
+            <div className="logReg">
               <div className="nav-item">
-                <Link to="/register">Register</Link>
+                <Link to="/login" id="navLink">Login</Link>
               </div>
-              <div className="nav-item">
-                <Link to="/login">Login</Link>
+              <div className="nav-item" id="registerBtn">
+                <Link to="/register" id="navLink">Register</Link>
               </div>
-            </>
+            </div>
         }
       </div>
     </div>

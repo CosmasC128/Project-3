@@ -1,25 +1,101 @@
 @import url("https://fonts.googleapis.com/css?family=Rajdhani:600,700%7CRoboto:400,500,500i");
 
+//our button yellow
+// #af8f4d;
+// #ad4cce; navbar color
+//twilight: #565697 match card background
+// -dark-violet: #252146;
+// --grayly-blue: #565895;
+// --marine: #211d41;
+// --haiti: #161236;
+// --martinique: #2e2a4f;
+// --kinky-shark: #392b68;
+// --satiric-shark: #312955;
+// --arid-shark: #3b2d6a;
+// --tired-licorice: #2c274f;
+// --restrictive-jet: #1d1546;
+// --actual-jet: #151136;
+
+//button Hover Colors:
+// background-color: #565895;
+// color: #af8f4d;
+// text-shadow: rgba(0, 0, 0, 0.694) 1px 1px;
+// border-color: #f5d075;
+
+// yellows
+// --dark-gold: #bd9e59;
+//     --yellow: #ffc306;
+//     --light-yellow: #f5d075;
+
+// --dark-blue-grey: #1a133d;
+
+//highlight colours
+// --blue: #38c6f4;
+//     --bluey-grey: #8890b5;
+//     --white: #ffffff;
+//     --success: #00b972;
+//     --greeny: #4cb748;
+//     --greeny-blue: #3cbdc2;
+//     --gold: #bd9e59;
+//     --tier-platinum: #2a947b;
+//     --strong-cyan: #18bd9b;
+//     --tier-gold: #f9b439;
+//     --pink: #c848c3;
+//     --darkish-pink: #e54787;
+//     --red: #ff2576;
+
 // @font-face {
 //   font-family: 'Friz-Quadrata';
 //   src: url("/fonts/Friz-Quadrata/Friz-Quadrata-Std-Medium.otf") format("opentype");
 // }
 //user fonts
-root {
-  background-color: rgb(15, 15, 111);
+* {
+  padding: 0;
+  margin: 0;
 }
-body {
+#root {
   line-height: 24px;
   font-size: 14px;
   font-family: "Roboto", sans-serif;
   font-weight: 500;
-  color: #777777; 
+  color: white; 
+  background-color: #1a133d;
 }
 
-div .cardWrapper {
+.bg {
+  /* Set rules to fill background */
+  min-height: 100%;
+  min-width: 1024px;
+	
+  /* Set up proportionate scaling */
+  width: 100%;
+  height: auto;
+	
+  /* Set up positioning */
+  position: fixed;
+  top: 10;
+  bottom: 10;
+  left: 0;
+}
+
+@media screen and (max-width: 1024px) { /* Specific to this particular image */
+  .bg {
+    left: 50%;
+    margin-left: -512px;   /* 50% */
+  }
+}
+
+.header {
   display: flex;
   justify-content: center;
+  margin-top: 200px;
+  margin-left: 150px;
 }
+
+  div .cardWrapper {
+    display: flex;
+    justify-content: center;
+  }
 
 .thumbnail {
   margin-left: 150px;
@@ -53,4 +129,307 @@ div .cardWrapper {
 display: flex;
 justify-content: center;
 padding-top: 300px;
+}
+
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ admin upload -> remember changes to the divs and class names
+
+.uploadPage{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 86vh;
+}
+
+.adminUploader {
+  display: flex;
+  justify-content: center;
+  border: 1px solid rgba(0, 0, 0, 0.60);
+  border-radius: 10px;
+  margin:20px;
+  padding: 20px;
+  background-color: #392b68;
+  width: 50%;
+}
+
+.uploaderWrap{
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.uploadTitle{
+  color: white;
+  margin-bottom: 10px;
+  text-shadow: black 1.5px 1.5px;
+}
+
+.uploadForm {
+  display: flex;
+  flex-direction: column;
+}
+
+.uploaderItem{
+  margin-right: 10px;
+  margin-left: 10px;
+  text-align: center;
+  border-radius: 4px;
+  border-color: rgba(0, 0, 0, 0.60);
+}
+
+#uploadBtn{
+  background-color: #af8f4d;
+  padding: 5px 10px 28px 10px;
+  border-radius: 6px;
+  height: 28px;
+  color: white;
+  font-weight: bold;
+  text-shadow: rgba(0, 0, 0, 0.694) 1px 1px;
+}
+
+#uploadBtn:hover {
+  background-color: #f5d075;
+  color: white;
+  text-shadow: rgba(0, 0, 0, 0.694) 1px 1px;
+  border-color: white;
+}
+
+.naughtyWrap{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 80px;
+  border: 1px solid white;
+  border-radius: 3px;
+  background-color: #392b68;
+  height: 100px;
+}
+
+#naughtyMessage {
+  color: red;
+  text-shadow: rgba(0, 0, 0, 0.74) 1.5px 1.5px;
+  font-size: 40px;
+  text-align: center;
+}
+
+#naughtyEyes{
+  margin-right: 20px;
+  margin-left: 20px;
+  color: red;
+}
+
+
+// ~~~~~~~~~ nav bar
+
+#navbar{
+  background-color: #ad4cce;
+  border-bottom: 1px solid white;
+  height: 32px;
+}
+
+#navwrap{
+  margin-left: 50px;
+  margin-right: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 33px;
+}
+
+.logReg{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: calc(50% - 100px);
+}
+
+#navLink {
+  background-color: #392b68;
+  padding: 6px 10px 5px 10px;
+  height: 30px;
+  color: white;
+  font-size: larger;
+  font-weight: bold;
+  text-shadow: rgba(0, 0, 0, 0.694) 1px 1px;
+  text-decoration: none;
+  color: inherit;
+  border-left: 1px solid white;
+  border-right: 1px solid white;
+  border-bottom: 1px solid white;
+}
+
+#navLinkLogout {
+  background-color: #392b68;
+  padding: 7px 10px 15px 10px;
+  height: 31px;
+  color: white;
+  font-size: larger;
+  font-weight: bold;
+  text-shadow: rgba(0, 0, 0, 0.694) 1px 1px;
+  text-decoration: none;
+  color: inherit;
+  border-left: 1px solid white;
+  border-right: 1px solid white;
+  border-bottom: 1px solid white;
+}
+
+#navLink:hover {
+  background-color: #565895;
+  color: #af8f4d;
+  text-shadow: rgba(0, 0, 0, 0.694) 1px 1px;
+  border-color: #f5d075;
+}
+
+#navLinkLogout:hover {
+  background-color: #565895;
+  color: #af8f4d;
+  text-shadow: rgba(0, 0, 0, 0.694) 1px 1px;
+  border-color: #f5d075;
+}
+
+// ~~~~~~~~~ register page
+
+.regPage{
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+}
+
+#regContainer{
+  width: 900px;
+}
+
+.regBox form{
+  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+#regBox{
+  margin-top: 60px;
+  max-width: 700px;
+}
+
+#regForm{
+  border: 1px solid white;
+  padding: 10px;
+  border-radius: 3px;
+  background-color: #392b68;
+}
+
+#regTitle{
+  text-align: center;
+  text-shadow: rgba(0, 0, 0, 0.694) 1px 1px;
+}
+
+.regLabel{
+  width: 95px;
+  text-align: center;
+}
+
+#regForm input{
+  display: flex;
+  flex-grow: 1;
+  text-align: center;
+}
+
+#regBtn {
+  margin-top: 5px;
+  background-color: #af8f4d;
+  padding: 5px 10px 28px 10px;
+  border-radius: 6px;
+  height: 28px;
+  color: white;
+  font-weight: bold;
+  text-shadow: rgba(0, 0, 0, 0.694) 1px 1px;
+}
+
+#regBtn:hover {
+  background-color: #f5d075;
+  color: white;
+  text-shadow: rgba(0, 0, 0, 0.694) 1px 1px;
+  border-color: white;
+}
+
+.regField{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+// ~~~~~~~~~ login page
+
+.loginPage{
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+}
+
+.logBox form{
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.logContainer{
+  width: 900px;
+  display: flex;
+  justify-content: center;
+}
+
+#logBox{
+  display: flex;
+  flex-grow: 1;
+  margin-top: 60px;
+  max-width: 500px;
+  max-height: 170px;
+}
+
+#logForm{
+  border: 1px solid white;
+  padding: 10px;
+  border-radius: 3px;
+  background-color: #392b68;
+}
+
+#logTitle{
+  text-align: center;
+  text-shadow: rgba(0, 0, 0, 0.694) 1px 1px;
+}
+
+.logLabel{
+  width: 95px;
+  text-align: center;
+}
+
+#logForm input{
+  display: flex;
+  flex-grow: 1;
+  text-align: center;
+}
+
+#logBtn {
+  margin-top: 5px;
+  background-color: #af8f4d;
+  padding: 5px 10px 28px 10px;
+  border-radius: 6px;
+  height: 28px;
+  color: white;
+  font-weight: bold;
+  text-shadow: rgba(0, 0, 0, 0.694) 1px 1px;
+}
+
+#logBtn:hover {
+  background-color: #f5d075;
+  color: white;
+  text-shadow: rgba(0, 0, 0, 0.694) 1px 1px;
+  border-color: white;
+}
+
+.logField{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
