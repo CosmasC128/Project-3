@@ -24,7 +24,7 @@ const CommentCard = ({ matchId, _id, username, text, createdAt, getMatch }) => {
   return (  
     <div className='text-center'>
       <div>{text} User: {username} / { createdAt.slice(0,10) } { createdAt.slice(11, 16) } </div>
-      { userIsAuthenticated() ? <button onClick={handleDelete}>Delete</button> : <div></div> }
+      { userIsAuthenticated() ? <button id="commentDelete" onClick={handleDelete}>Delete</button> : <div></div> }
     </div>
   )
 }

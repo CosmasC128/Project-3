@@ -150,7 +150,6 @@ transition: transform 0.2s ease;
 transform: scale(1.1);
 }
 
-
 .rating {
 margin-left: 140px;
 }
@@ -166,7 +165,6 @@ transform: scale(1.1);
 .fireBtn {
 display: flex;
 justify-content: center;
-background-color: #af8f4d;
 }
 
 .footer {
@@ -175,7 +173,95 @@ justify-content: center;
 padding-top: 300px;
 } 
 
-// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ admin upload -> remember changes to the divs and class names ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ MATCH PAGE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+#firePNG{
+  img{
+    max-width: 25px;
+    max-height: 25px;
+  }
+}
+
+
+#commentSubmit, #commentDelete {
+  background-color: #af8f4d;
+  padding: 5px 5px 20px 5px;
+  border-radius: 6px;
+  height: 15px;
+  color: white;
+  font-weight: bold;
+  text-shadow: rgba(0, 0, 0, 0.694) 1px 1px;
+}
+
+#commentSubmit:hover, #commentDelete:hover {
+  background-color: #f5d075;
+  color: white;
+  text-shadow: rgba(0, 0, 0, 0.694) 1px 1px;
+  border-color: white;
+}
+
+.videoBox{
+      max-width: 600px;
+      background-color: rgb(53, 53, 53);
+      border: #af8f4d solid 1px;
+    }
+  
+  
+.commentBox{
+  button{
+    background-color: #af8f4d;
+    color: white;
+    font-weight: bold;
+    text-shadow: 1px 1px 1px #000000;}
+    
+  }
+  .insideBox{
+    background-color: rgb(53, 53, 53);
+    border: #af8f4d solid 1px;
+  }
+
+
+
+.fireBtn{
+  button { 
+    background-color:rgba(15, 15, 111, 0);
+    border-radius: 50%;
+    border: solid 2px orange;}
+}
+.fireBtn:hover {
+  transform: scale(1.1);
+  transition: 0.3s;
+  .flaming{
+    width: 20px;
+    height: 20px;
+    animation: flame 0.4s infinite;
+  }
+}
+.flaming{
+  width: 20px;
+  height: 20px;
+}
+
+@keyframes flame {
+  0% {transform:scale(1);}
+  
+  
+  80% {transform:scale(1.2,1.4);}
+  
+  
+}
+
+iframe{
+  width: 560px; 
+  height: 315px;
+}
+
+
+
+
+
+
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ADMIN UPLOAD ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .uploadPage{
   display: flex;
@@ -477,3 +563,5 @@ padding-top: 300px;
   flex-direction: row;
   justify-content: space-between;
 }
+
+// ~~~~~~~~~~ match card ~~~~~~~~~~~~

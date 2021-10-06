@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom'
 // import { userIsAuthenticated } from '../helpers/auth.js'
 import axios from 'axios'
 import CommentCard from './CommentCard.js'
+import flame from '../images/fire.png'
 
 const Match = () => {
 
@@ -106,33 +107,84 @@ const Match = () => {
 
   //usersVoted.includes(currentUserLoggedIn) swap this with 'true' below in the jsx under fire rating
   return (<>
-    <div className="playerWrapper">
-      <div>{ title }</div>
-      <iframe width="560" height="315" src={url} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
-      <div className="fireWrap">
-        <div>Fire Rating: { count ? count / views * 100 : match.votes / views * 100} %</div>
-        <div className='fireBtn'><button className="btn btn-primary" type="submit" onClick={handleClick}>🔥 Fire 🔥</button></div>
+    <div>
+      <div className='container d-flex w-50 justify-content-center align-items-center videoBox'>
+        <div className='p-3 text-center '>
+          <div className='text-white'>{ title }</div>
+          <iframe src={url} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+          <div className='d-flex mt-3 justify-content-around align-items-center ' >
+            <div className='fireBtn'><button className='fireBtn' type="submit" onClick={handleClick}><img src={flame} className='flaming'/></button></div>
+            <div className='pt-2'><span id="firePNG"><img src={flame} /></span> <span className='views'>{ count ? Math.round(count / views * 100) : match.votes / views * 100} %</span> </div>
+            <div className='pt-2'> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-eye-fill" viewBox="0 0 16 16">
+              <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
+              <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
+            </svg> {viewsCount}</div>
+          </div>
+        </div>
       </div>
-      <div>Views: {viewsCount}</div>
+      
+  
+      <div className='container pt-3 d-flex justify-content-center commentBox'>
+        
+        <div className='container-item p-3 insideBox'>
+          <h4 className='text-center' >Comments</h4>
+          { comments ? comments.map(comment => { 
+            return <CommentCard key={comment._id} { ...comment } matchId={ id } getMatch={ getMatch }/>
+          })
+            :
+            <div>No comments yet</div>
+          }
+          <form className=' m-3 d-flex justify-content-center align-items-center' onSubmit={handleSubmit}>
+            
+            <textarea
+              type="text" 
+              placeholder="Write a comment... " 
+              name="text" 
+              onChange={handleChange}
+              value={formData.text}
+            >
+            </textarea>
+            <button id="commentSubmit">Submit</button>
+          </form>
+        </div>
+      </div>
     </div>
-    { comments ? comments.map(comment => { 
-      return <CommentCard key={comment._id} { ...comment } matchId={ id } getMatch={ getMatch }/>
-    })
-      :
-      <div>No comments yet</div>
-    }
-    <form onSubmit={handleSubmit}>
-      <textarea
-        type="text" 
-        placeholder="Write a comment... " 
-        name="text" 
-        onChange={handleChange}
-        value={formData.text}
-      >
-      </textarea>
-      <button>Submit</button>
-    </form>
   </>)
 }
 
 export default Match
+
+
+
+
+
+
+
+// return (<>
+//   <div className="playerWrapper">
+//     <div>{ title }</div>
+//     <iframe width="560" height="315" src={url} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+//     <div className="fireWrap">
+//       <div>Fire Rating: { count ? count / views * 100 : match.votes / views * 100} %</div>
+//       <div className='fireBtn'><button className="btn btn-primary" type="submit" onClick={handleClick}>🔥 Fire 🔥</button></div>
+//     </div>
+//     <div>Views: {viewsCount}</div>
+//   </div>
+//   { comments ? comments.map(comment => { 
+//     return <CommentCard key={comment._id} { ...comment } matchId={ id } getMatch={ getMatch }/>
+//   })
+//     :
+//     <div>No comments yet</div>
+//   }
+//   <form onSubmit={handleSubmit}>
+//     <textarea
+//       type="text" 
+//       placeholder="Write a comment... " 
+//       name="text" 
+//       onChange={handleChange}
+//       value={formData.text}
+//     >
+//     </textarea>
+//     <button>Submit</button>
+//   </form>
+// </>)
