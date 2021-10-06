@@ -114,7 +114,7 @@ const Match = () => {
           <iframe src={url} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
           <div className='d-flex mt-3 justify-content-around align-items-center ' >
             <div className='fireBtn'><button className='fireBtn' type="submit" onClick={handleClick}><img src={flame} className='flaming'/></button></div>
-            <div className='pt-2'><span id="firePNG"><img src={flame} /></span> <span className='views'>{ count ? Math.round(count / views * 100) : match.votes / views * 100} %</span> </div>
+            <div className='pt-2'><span id="firePNG"><img src={flame} /></span> <span className='views'>{ count ? Math.round(count / views * 100) : Math.round(match.votes / views * 100)} %</span> </div>
             <div className='pt-2'> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-eye-fill" viewBox="0 0 16 16">
               <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
               <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>

@@ -62,7 +62,16 @@
   background-color: #1a133d;
 }
 
-// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:hover{
+  color: white;
+}
+
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ HOME PAGE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .bg {
   top:0;
@@ -75,31 +84,13 @@
   flex-direction: column;
 }
 
-// .bg {
-//   /* Set rules to fill background */
-//   min-height: 100%;
-//   min-width: 1024px;
-	
-//   /* Set up proportionate scaling */
-//   width: 100%;
-//   height: auto;
-
-//   background-repeat: no-repeat;
-//   background-size: auto;
-	
-//   /* Set up positioning */
-//   top: 10;
-//   bottom: 10;
-//   left: 0;
-// }
-
-
 // @media screen and (max-width: 1024px) { /* Specific to this particular image */
 //   .bg {
 //     left: 50%;
 //     margin-left: -512px;   /* 50% */
 //   }
 // }
+
 #homeTitles{
   height: 180px;
   display: flex;
@@ -131,6 +122,7 @@
   display: flex;
   flex-direction: row;
 }
+
 img {
   display: flex;
   flex-grow: 1;
@@ -162,42 +154,74 @@ img:hover {
   -webkit-transition: opacity .55s ease-in-out;
 }
 
+// ~~~~~~~~~~~~ MATCH CARD AND MATCHES PAGE ~~~~~~~~~~~~~
+
 div .cardWrapper {
   display: flex;
   justify-content: center;
 }
 
 .thumbnail {
-margin-left: 150px;
-transition: transform 0.2s ease;
+  transition: transform 0.2s ease;
 }
 
 .thumbnail:hover {
-transform: scale(1.1);
+  transform: scale(1.1);
 }
 
 .rating {
-margin-left: 140px;
+  margin-left: 140px;
 }
 
 .card {
-transition: transform 0.2s ease;
+  transition: transform 0.2s ease;
 }
 
 .card:hover {
-transform: scale(1.1);
+  transform: scale(1.1);
 }
 
-.fireBtn {
-display: flex;
-justify-content: center;
+#footWrap{
+  border-top: 1px solid white;
+  margin-top: 0;
+  height: 50px;
+}
+#footer{
+  color: rgba(120, 120, 120, 0.81);
+  font-size: 14px;
+  margin-left: 100px;
+  margin-right: 100px;
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.footer {
-display: flex;
-justify-content: center;
-padding-top: 300px;
-} 
+.leftText{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 180px;
+}
+
+.ourLinks{
+  margin-left: 5px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.ourLinks:hover{
+  color: white;
+}
+
+#footerUl1, #footerUl2{
+  display: flex;
+}
+
+.hoverList:hover{
+  color: white;
+  text-shadow: rgba(0, 0, 0, 0.694) 1px 1px;
+}
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ MATCH PAGE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -208,6 +232,10 @@ padding-top: 300px;
   }
 }
 
+.fireBtn {
+  display: flex;
+  justify-content: center;
+  }
 
 #commentSubmit, #commentDelete {
   background-color: #af8f4d;
@@ -590,4 +618,21 @@ iframe{
   justify-content: space-between;
 }
 
-// ~~~~~~~~~~ match card ~~~~~~~~~~~~
+// ~~~~~~~~~~ MATCHES / MATCH CARD ~~~~~~~~~~~~
+
+.matchesGrid {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+
+.cardWrapper{
+  width: calc((100%/5) - 50px);
+  margin-right: 5px;
+  margin-left: 5px;
+  border: 1px solid white;
+  padding: 10px;
+  border-radius: 3px;
+  background-color: #392b68;
+}
