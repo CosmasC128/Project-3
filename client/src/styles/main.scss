@@ -44,11 +44,11 @@
 //     --darkish-pink: #e54787;
 //     --red: #ff2576;
 
-// @font-face {
-//   font-family: 'Friz-Quadrata';
-//   src: url("/fonts/Friz-Quadrata/Friz-Quadrata-Std-Medium.otf") format("opentype");
-// }
-//user fonts
+@font-face {
+  font-family: 'Friz-Quadrata';
+  src: url("../fonts/Friz\ Quadrata\ Std\ Medium.otf") format("opentype");
+}
+
 * {
   padding: 0;
   margin: 0;
@@ -56,7 +56,7 @@
 #root {
   line-height: 24px;
   font-size: 14px;
-  font-family: "Roboto", sans-serif;
+  font-family: "Friz-Quadrata", "Roboto", sans-serif;
   font-weight: 500;
   color: white; 
   background-color: #1a133d;
@@ -65,50 +65,76 @@
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .bg {
-  /* Set rules to fill background */
-  min-height: 100%;
-  min-width: 1024px;
-	
-  /* Set up proportionate scaling */
-  width: 100%;
-  height: auto;
-	
-  /* Set up positioning */
-  position: fixed;
-  top: 10;
-  bottom: 10;
-  left: 0;
+  top:0;
+  background-size: cover;
+  height: 100vh;
+  margin: 0 auto;
+  background-repeat: no-repeat;
+  background: center;
+  display: flex;
+  flex-direction: column;
 }
 
-@media screen and (max-width: 1024px) { /* Specific to this particular image */
-  .bg {
-    left: 50%;
-    margin-left: -512px;   /* 50% */
-  }
+// .bg {
+//   /* Set rules to fill background */
+//   min-height: 100%;
+//   min-width: 1024px;
+	
+//   /* Set up proportionate scaling */
+//   width: 100%;
+//   height: auto;
+
+//   background-repeat: no-repeat;
+//   background-size: auto;
+	
+//   /* Set up positioning */
+//   top: 10;
+//   bottom: 10;
+//   left: 0;
+// }
+
+
+// @media screen and (max-width: 1024px) { /* Specific to this particular image */
+//   .bg {
+//     left: 50%;
+//     margin-left: -512px;   /* 50% */
+//   }
+// }
+#homeTitles{
+  height: 180px;
+  display: flex;
+  flex-direction: column;
+  justify-content:flex-end;
 }
 
-.header {
+.homeTitle {
   display: flex;
   justify-content: center;
-  margin-top: 200px;
-  margin-left: 150px;
-  color: #af8f4d;
+  color: white;
+  text-shadow: black 2px 2px;
+  font-size: 64px;
 }
 
-h2 {
+.homeFlavour {
+  display: flex;
+  justify-content: center;
+  font-size: 30px;
+  text-shadow: black 1.5px 1.5px;
+}
+
+#homeSection{
   display: flex;
   justify-content: center;
 }
-.hl-item-inner {
-  width: 100px;
+
+.topGames{
   display: flex;
-  justify-content: space-between;
-  margin-left: 400px;
+  flex-direction: row;
 }
 img {
   display: flex;
   flex-grow: 1;
-  height: 200px;
+  height: 150px;
     --tw-translate-x: 0;
     --tw-translate-y: 0;
     --tw-rotate: 0;

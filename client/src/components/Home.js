@@ -5,17 +5,13 @@ const Home = () => {
   return (
     <div className='bg' style={{
       backgroundImage: 'url(https://www.theloadout.com/wp-content/uploads/2020/09/league-of-legends-worlds-2020-shanghai.jpg)',
-      height: '300px',
-      backgroundRepeat: 'no-repeat',
     }} >
-      <div>
-        <h1 className='header'> 🔥 Fire 🔥 GCW E-Sports</h1>
+      <div id="homeTitles"> 
+        <h1 className='homeTitle'> 🔥 GCW Fire Esports 🔥</h1>
+        <h2 className="homeFlavour">Catch up with the weeks hottest E-Sport Action</h2>
       </div>
-      <div>
-        <h2>Catch up with the weeks hottest E-Sport Action</h2>
-      </div>
-      <section id="game-list" className="hl-games-list hl-item">
-        <div className="hl-item-inner" >
+      <section id="homeSection">
+        <div className="topGames" >
           <div className="hl-games-list-item">
             <div className="img-bg">
               <img src="https://smallcaps.com.au/wp-content/uploads/2019/03/Mogul-ASX-ESH-Legacy-AFL-Adelaide-Crows-eSports-team.jpg" alt="Game"></img>
