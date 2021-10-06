@@ -54,9 +54,11 @@ const Matches = () => {
   }, [filters, sortBy, sortedArray, matches])
 
   return (<>
-    <h1 id="homeTitle">See all the Matches!</h1>
     <div className="matchesWrapper">
-      <Filters handleFilterChange={handleFilterChange} handleSortBy={handleSortBy} {...filters}/>
+      <div>
+        <h1 id="homeTitle">See all the Matches!</h1>
+        <Filters handleFilterChange={handleFilterChange} handleSortBy={handleSortBy} {...filters}/>
+      </div>
       <div className="matchesGrid">
         { (filters.searchTerm !== '' ? searchMatches : sortedArray ).map(match => { 
           return <MatchCard key={match.id} { ...match } />

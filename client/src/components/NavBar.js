@@ -36,7 +36,6 @@ const NavBar = () => {
   }, [])
   // if user is logged in, should display logout button/code instead of login/register
   // background image and styling
-  // console.log('UUUUUUUSEEEERERERER', user)
   return (
     <div id='navbar'>
       <div id="navwrap">

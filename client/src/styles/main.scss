@@ -123,7 +123,7 @@ a:hover{
   flex-direction: row;
 }
 
-img {
+.homeImages {
   display: flex;
   flex-grow: 1;
   height: 150px;
@@ -145,7 +145,7 @@ img {
     -webkit-transition: opacity 1s ease-in-out;
 }
 
-img:hover {
+.homeImages:hover {
   transform: scale(1.5);
   transform: skewX(12deg);
   opacity: 1.0;
@@ -156,30 +156,60 @@ img:hover {
 
 // ~~~~~~~~~~~~ MATCH CARD AND MATCHES PAGE ~~~~~~~~~~~~~
 
-div .cardWrapper {
-  display: flex;
-  justify-content: center;
+// ~~~~~~~ Match Cards
+.cardWrapper{
+  width: calc((100%/5) - 50px);
+  margin: 10px;
+  border: 1px solid white;
+  padding: 10px;
+  border-radius: 3px;
+  background-color: #392b68;
+  transition: transform 0.2s ease;
+}
+
+.cardWrapper:hover {
+  transform: scale(1.1);
+  color: #f5d075;
+  border-color: #fc7c00;
+}
+
+#cardLink{
+  color: inherit;
+  text-decoration: none;
 }
 
 .thumbnail {
-  transition: transform 0.2s ease;
+  width: 100%;
 }
 
-.thumbnail:hover {
-  transform: scale(1.1);
+.matchCardData{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border: 1px solid white;
 }
 
-.rating {
-  margin-left: 140px;
+#cardRating{
+  display: flex;
+  flex-direction: row;
 }
 
-.card {
-  transition: transform 0.2s ease;
+#cardViews{
+  display: flex;
+  flex-direction: row;
 }
 
-.card:hover {
-  transform: scale(1.1);
+
+//~~~~~~ Matches
+
+.matchesGrid {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
+
+
+// ~~~~~~~~~~~~~ FOOTER ~~~~~~~~~~~~~~~~~~
 
 #footWrap{
   border-top: 1px solid white;
@@ -222,6 +252,7 @@ div .cardWrapper {
   color: white;
   text-shadow: rgba(0, 0, 0, 0.694) 1px 1px;
 }
+
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ MATCH PAGE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -509,8 +540,9 @@ iframe{
 
 #regBox{
   margin-top: 80px;
-  max-width: 550px;
+  max-width: 600px;
   width: 60%;
+  min-width: 300px;
 }
 
 #regForm{
@@ -579,6 +611,7 @@ iframe{
 .logContainer{
   width: 40%;
   max-width: 600px;
+  min-width: 300px;
   display: flex;
   justify-content: center;
 }
@@ -636,23 +669,4 @@ iframe{
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-}
-
-// ~~~~~~~~~~ MATCHES / MATCH CARD ~~~~~~~~~~~~
-
-.matchesGrid {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-}
-
-
-.cardWrapper{
-  width: calc((100%/5) - 50px);
-  margin-right: 5px;
-  margin-left: 5px;
-  border: 1px solid white;
-  padding: 10px;
-  border-radius: 3px;
-  background-color: #392b68;
 }

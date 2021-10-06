@@ -12,13 +12,13 @@ const MatchCard = ({ id, title, rating, views, thumbNail }) => { //pull in users
   // should find various icons to display depending on the average rating. 90%+ is best, 70-89% 2nd best, 50-69% 3rd best, then under 50% something snow/cold related
   return (<>
     <div className="cardWrapper">
-      <Link to={`/matches/${ id }`}>
-        <div>{ title.slice(0, 20) }</div>
+      <Link to={`/matches/${ id }`} id="cardLink">
+        <div id="matchesTitle">{ title.slice(0, 20) }</div>
         <img className="thumbnail" src={thumbNail} alt="match thumbnail"></img>
         <div className="matchCardData" style={{ display: 'flex' }}>
           <div id="cardRating">
-            <img src={flame} className='flaming'/>
-            <div>{rating}%</div>
+            <img id="cardFlame"src={flame} className='flaming'/>
+            <div id="cardRating">{rating}%</div>
           </div>
           <div id="cardViews">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-eye-fill" id="naughtyEyes" viewBox="0 0 16 16">
