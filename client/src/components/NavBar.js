@@ -40,30 +40,22 @@ const NavBar = () => {
   return (
     <div id='navbar'>
       <div id="navwrap">
-        <div><Link to="/" id="navLink">Home</Link></div>
-        <div><Link to="/matches" id="navLink">Matches</Link></div>
+        <Link to="/" id="navLink">Home</Link>
+        <Link to="/matches" id="navLink">Matches</Link>
         {
           user.username === 'admin' ? 
-            <div className="nav-item">
-              <Link to="/AdminUpload" id="navLink">Admin Upload</Link>
-            </div>
+            <Link to="/AdminUpload" id="navLink">Admin Upload</Link>
             :
             <>
             </>
         }
         {
           userIsAuthenticated() ? 
-            <div className="nav-item" id="navLinkLogout">
-              <span onClick={handleLogout}>Logout</span>
-            </div>
+            <span id="navLinkLogout" onClick={handleLogout}>Logout</span>
             :
             <div className="logReg">
-              <div className="nav-item">
-                <Link to="/login" id="navLink">Login</Link>
-              </div>
-              <div className="nav-item" id="registerBtn">
-                <Link to="/register" id="navLink">Register</Link>
-              </div>
+              <Link to="/login" id="navLink">Login</Link>
+              <Link to="/register" id="navLink">Register</Link>
             </div>
         }
       </div>

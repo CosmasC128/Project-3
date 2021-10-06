@@ -402,12 +402,11 @@ iframe{
 }
 
 
-// ~~~~~~~~~ nav bar
+// ~~~~~~~~~ NAV BAR ~~~~~~~~~~~~~~~~~~~
 
 #navbar{
   background-color: #ad4cce;
   border-bottom: 1px solid white;
-  height: 32px;
 }
 
 #navwrap{
@@ -417,7 +416,6 @@ iframe{
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  height: 33px;
 }
 
 .logReg{
@@ -429,8 +427,7 @@ iframe{
 
 #navLink {
   background-color: #392b68;
-  padding: 6px 10px 5px 10px;
-  height: 30px;
+  padding: 5px 10px 5px 10px;
   color: white;
   font-size: larger;
   font-weight: bold;
@@ -439,13 +436,11 @@ iframe{
   color: inherit;
   border-left: 1px solid white;
   border-right: 1px solid white;
-  border-bottom: 1px solid white;
 }
 
 #navLinkLogout {
+  padding: 5px 10px 5px 10px;
   background-color: #392b68;
-  padding: 7px 10px 15px 10px;
-  height: 31px;
   color: white;
   font-size: larger;
   font-weight: bold;
@@ -454,7 +449,6 @@ iframe{
   color: inherit;
   border-left: 1px solid white;
   border-right: 1px solid white;
-  border-bottom: 1px solid white;
 }
 
 #navLink:hover {
