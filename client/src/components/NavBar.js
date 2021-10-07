@@ -6,7 +6,7 @@ import { getTokenFromLocalStorage } from '../helpers/auth.js'
 
 const NavBar = () => {
 
-  
+  //I want to rerender the navBar on login and logout
 
   const history = useHistory()
   const location = useLocation()

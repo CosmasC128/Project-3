@@ -24,7 +24,7 @@ const Matches = () => {
   const [ sortBy, setSortBy ] = useState('createdAt')
   const [ sortedArray, setSortedArray ] = useState([])
 
-  // cosmas - notes to myself - add DATE as default sort
+  // DATE is default sort
 
   const handleFilterChange = (event) => {
     const newObj = { ...filters, [event.target.name]: event.target.value }

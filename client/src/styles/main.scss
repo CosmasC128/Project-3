@@ -647,26 +647,24 @@ iframe{
   align-items: center;
 }
 
-.uploaderItem{
-  margin-right: 10px;
-  margin-left: 10px;
-  text-align: center;
-  border-radius: 4px;
-  border-color: rgba(0, 0, 0, 0.60);
-}
+// .uploaderItem{
+//   margin-right: 10px;
+//   margin-left: 10px;
+//   text-align: center;
+//   border-radius: 4px;
+//   border-color: rgba(0, 0, 0, 0.60);
+// }
 
-#uploadBtn.uploaderItem {
-  width: 100%;
-  text-align: center;
-  margin-top: 3px;
-  margin-left: 0px;
-  background-color: #af8f4d;
-  padding: 5px 100px 28px 10px;
-  border-radius: 6px;
-  height: 28px;
+#uploadBtn {
   color: white;
   font-weight: bold;
   text-shadow: rgba(0, 0, 0, 0.694) 1px 1px;
+  background-color: #af8f4d;
+  border-radius: 6px;
+  width: 100%;
+  margin-top: 3px;
+  margin-left: 0px;
+  display: table-cell;
 }
 
 #uploadBtn:hover {
@@ -686,6 +684,7 @@ iframe{
   flex-grow: 1;
   text-align: center;
   margin-right: 0;
+  margin-left: 5px;
 }
 
 .uploadField{

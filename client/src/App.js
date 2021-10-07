@@ -13,9 +13,6 @@ import AdminUpload from './components/AdminUpload.js'
 import Login from './components/auth/Login.js'
 import Register from './components/auth/Register.js'
 
-// get data from our database
-// need to link back end and frontend through data
-
 const  App = () => {
   
   return (
