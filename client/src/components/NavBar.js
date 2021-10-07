@@ -39,11 +39,12 @@ const NavBar = () => {
   }, [])
   // if user is logged in, should display logout button/code instead of login/register
   // background image and styling
+
   return (
     <div id='navbar'>
       <div id="navwrap">
         <Link to="/" id="navLink">Home</Link>
-        <Link to="/matches" id="navLink">Matches</Link>
+        <Link to="/matches" id="navLink">ProMatches</Link>
         {
           user.username === 'admin' ? 
             <Link to="/AdminUpload" id="navLink">Admin Upload</Link>
@@ -53,7 +54,7 @@ const NavBar = () => {
         }
         {
           userIsAuthenticated() ? 
-            <span id="navLinkLogout" onClick={handleLogout}>Logout</span>
+            <span id="navLinkLogout" onClick={handleLogout}>Logout: { user.username }</span>
             :
             <>
               <Link to="/login" id="navLink">Login</Link>

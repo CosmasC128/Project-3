@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { getTokenFromLocalStorage, userIsAuthenticated } from '../helpers/auth.js'
-import { useParams } from 'react-router-dom'
-// import { userIsAuthenticated } from '../helpers/auth.js'
+import { useParams, useHistory, useLocation } from 'react-router-dom'
+
 import axios from 'axios'
 import CommentCard from './CommentCard.js'
 import flame from '../images/fire.png'
@@ -57,6 +57,9 @@ const Match = () => {
   // wrap this around getViews so it doesn't run on pageload if the user had already seen the match.
 
   getViews()
+
+
+
 
   // *** BUTTON CODE
   //need to update VIEWS on VISIT, then save to database
@@ -117,7 +120,43 @@ const Match = () => {
     }
   }
 
+  // *** ADMIN VERIFICATION
 
+  const history = useHistory()
+  const location = useLocation()
+
+  useEffect(() => {
+  }, [location.pathname])
+
+  const [ user, setUser ] = useState([])
+
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const { data } = await axios.get(
+          '/api/user',
+          {
+            headers: { Authorization: `Bearer ${getTokenFromLocalStorage()}` },
+          })
+        setUser(data)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    getData()
+  }, [])
+  
+  const handleDeleteMatch = async () => {
+    try {
+      await axios.delete(`/api/matches/${id}`,
+        {
+          headers: { Authorization: `Bearer ${getTokenFromLocalStorage()}` },
+        })
+      history.push('/matches')
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
 
   return (<>
@@ -126,6 +165,7 @@ const Match = () => {
         <img className='sideimage' src={'https://the-page-of-legends.webnode.es/_files/200000278-b85cdb9559/morgana_blademistress2.png'}></img>
         <div id="playerWrapper" className='container d-flex w-50 justify-content-center align-items-center videoBox'>
           <div className='p-3 text-center '>
+            { user.username === 'admin' ? <button id="deleteMatchBtn" onClick={ handleDeleteMatch }>Delete Match</button> : <></> }
             <div id="matchTitle"className='text-white'>{ title }</div>
             <iframe id="iframeO" src={url} title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
             <div id="matchData">

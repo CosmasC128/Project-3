@@ -365,6 +365,26 @@ a:hover{
   min-width: 420px;
 }
 
+#deleteMatchBtn{
+  width: 150px;
+  background-color: #9949b3f3;
+  border-radius: 3px;
+  color: white;
+  font-weight: bold;
+  text-shadow: rgba(0, 0, 0, 0.694) 1px 1px;
+  text-align: center;
+  opacity: .7;
+  margin-bottom: 10px;
+}
+
+#deleteMatchBtn:hover{
+  background-color: #d33fe1f3;
+  color: white;
+  text-shadow: rgba(0, 0, 0, 0.694) 1px 1px;
+  border-color: white;
+  opacity: 1;
+}
+
 #matchEye{
   color: #af8f4d;
 }
@@ -708,7 +728,7 @@ iframe{
 // ~~~~~~~~~ NAV BAR ~~~~~~~~~~~~~~~~~~~
 
 #navbar{
-  background-color: #ad4cce;
+  background-color: #9949b3f3;
   border-bottom: 1px solid white;
 }
 
