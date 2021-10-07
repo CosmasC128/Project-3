@@ -3,7 +3,7 @@ import React from 'react'
 const Filters = ({ handleFilterChange, handleSortBy, sortBy, searchTerm }) => {
   return (
     <>
-      <div className="filters d-flex justify-content-around" style={{ marginBottom: '40px' }}>
+      <div className="filters d-flex justify-content-around" id="filtersDiv">
         <input onChange={ handleFilterChange } name="searchTerm" value={ searchTerm } placeholder=' search matches'/>
         <select onChange={handleSortBy} name="sortBy" value={sortBy}>
           <option value="createdAt">Date</option>

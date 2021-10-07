@@ -158,10 +158,11 @@ a:hover{
 
 // ~~~~~~~ Match Cards
 .cardWrapper{
-  width: calc((100%/5) - 50px);
+  width: 190px;
+  height: 190px;
   margin: 10px;
   border: 1px solid white;
-  padding: 10px;
+  padding: 5px 10px 5px 10px;
   border-radius: 3px;
   background-color: #392b68;
   transition: transform 0.2s ease;
@@ -178,34 +179,103 @@ a:hover{
   text-decoration: none;
 }
 
+#cardTitle{
+  white-space: nowrap;
+  text-align: center;
+  width: 95%;
+}
+
 .thumbnail {
   width: 100%;
+  border: 2.5px solid #af8f4d;
+  border-radius: 2px;
 }
 
 .matchCardData{
+  width: 90%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  border: 1px solid white;
+  margin: 5px;
+  margin-bottom: 0;
+  align-items: center;
 }
 
 #cardRating{
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
+  width: 33%;
 }
 
 #cardViews{
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
+  width: 28%;
+}
+
+#cardViewsNumber{
+  width: 40%;
 }
 
 
+#cardEye{
+  color: #af8f4d;
+  width: 60%;
+}
+
 //~~~~~~ Matches
+
+.matchesWrapper{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#aboveMatchesGrid{
+  margin-top: 40px;
+  margin-bottom: 20px;
+  border: 1px solid white;
+  padding: 10px;
+  border-radius: 3px;
+  background-color: #392b68;
+  text-align: center;
+  min-width: 300px;
+}
+
+#matchTitle{
+  font-size: 40px;
+}
+
+#matchFlavour{
+  font-size: 18px;
+}
+
+#filtersDiv{
+  display: flex;
+  justify-content: space-between;
+}
+
+#filtersDiv input{
+  display: flex;
+  text-align: center;
+  width: 60%;
+}
+
+#filtersDiv select{
+  display: flex;
+  text-align: center;
+  width: 20%;
+}
 
 .matchesGrid {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  max-width: 1050px;
+  min-width: 420px;
 }
 
 
@@ -382,9 +452,10 @@ iframe{
   text-shadow: black 1.5px 1.5px;
 }
 
-.uploadForm {
+#uploadForm {
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
 .uploaderItem{
@@ -395,12 +466,13 @@ iframe{
   border-color: rgba(0, 0, 0, 0.60);
 }
 
-#uploadBtn {
+#uploadBtn.uploaderItem {
   width: 100%;
-  margin-top: 5px;
+  text-align: center;
+  margin-top: 3px;
   margin-left: 0px;
   background-color: #af8f4d;
-  padding: 5px 10px 28px 10px;
+  padding: 5px 100px 28px 10px;
   border-radius: 6px;
   height: 28px;
   color: white;
@@ -428,8 +500,11 @@ iframe{
 }
 
 .uploadField{
+  width: 100%;
   display: flex;
   flex-direction: row;
+  margin-top: 3px;
+  margin-bottom: 3px;
   flex-grow: 1;
   justify-content: space-between;
 }
