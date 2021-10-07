@@ -6,6 +6,8 @@ import { getTokenFromLocalStorage } from '../helpers/auth.js'
 
 const NavBar = () => {
 
+  
+
   const history = useHistory()
   const location = useLocation()
 
@@ -16,6 +18,7 @@ const NavBar = () => {
     window.localStorage.removeItem('token')
     history.push('/')
   }
+
 
   const [ user, setUser ] = useState([])
 

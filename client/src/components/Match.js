@@ -107,36 +107,53 @@ const Match = () => {
     }
   }
 
-  //usersVoted.includes(currentUserLoggedIn) swap this with 'true' below in the jsx under fire rating
+  const commentsBox = document.getElementById('commentsBox')
+
+  const handleShow = () => {
+    if (commentsBox.style.display === 'flex') {
+      commentsBox.style.display = 'none'
+    } else {
+      commentsBox.style.display = 'flex'
+    }
+  }
+
+
+
+
   return (<>
     <div id="matchPage">
-      <div id="playerWrapper" className='container d-flex w-50 justify-content-center align-items-center videoBox'>
-        <div className='p-3 text-center '>
-          <div id="matchTitle"className='text-white'>{ title }</div>
-          <iframe id="iframeO" src={url} title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
-          <div id="matchData">
-            <div id="matchdataLeft">
-              <div className='fireBtn'>
-                { rating > 50 ? 
-                  <button className='fireBtn' id="fireButton" type="submit" onClick={handleClick}><img src={ flame } className='flaming'/></button>
-                  :
-                  <button className='fireBtn' id="iceButton" type="submit" onClick={handleClick}><img src={ snow } className='flaming'/></button>
-                }
+      <div className="tophalf">
+        <img className='sideimage' src={'https://the-page-of-legends.webnode.es/_files/200000278-b85cdb9559/morgana_blademistress2.png'}></img>
+        <div id="playerWrapper" className='container d-flex w-50 justify-content-center align-items-center videoBox'>
+          <div className='p-3 text-center '>
+            <div id="matchTitle"className='text-white'>{ title }</div>
+            <iframe id="iframeO" src={url} title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+            <div id="matchData">
+              <div id="matchdataLeft">
+                <div className='fireBtn'>
+                  { rating > 50 ? 
+                    <button className='fireBtn' id="fireButton" type="submit" onClick={handleClick}><img src={ flame } className='flaming'/></button>
+                    :
+                    <button className='fireBtn' id="iceButton" type="submit" onClick={handleClick}><img src={ snow } className='flaming'/></button>
+                  }
+                </div>
+                <div className='pt-2'>{ count ? Math.round(count / views * 100) : Math.round(match.votes / views * 100)}%</div>
               </div>
-              <div className='pt-2'>{ count ? Math.round(count / views * 100) : Math.round(match.votes / views * 100)}%</div>
-            </div>
-            <div id="matchdataRight">
-              <svg id="matchEye" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-eye-fill" viewBox="0 0 16 16">
-                <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
-                <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
-              </svg> {viewsCount}
+              <button id="toggleComments" onClick={ handleShow }>Show Comments</button>
+              <div id="matchdataRight">
+                <svg id="matchEye" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-eye-fill" viewBox="0 0 16 16">
+                  <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
+                  <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
+                </svg> {viewsCount}
+              </div>
             </div>
           </div>
         </div>
+        <img className='sideimage' src={'https://the-page-of-legends.webnode.es/_files/200000273-aff03b1e63/Sin_ttulo-1-3.png'}></img>
       </div>
 
       <div id="commentWrapper" className='container pt-3 d-flex justify-content-center commentBox'>
-        <div className='commentsBox'>
+        <div id="commentsBox" className='commentsBox'>
           <h4 className='text-center' id="commentsTitle" >~ Comments ~</h4>
           { comments ? comments.map(comment => { 
             return <CommentCard key={comment._id} { ...comment } matchId={ id } getMatch={ getMatch }/>

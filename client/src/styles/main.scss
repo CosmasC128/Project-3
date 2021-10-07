@@ -335,6 +335,15 @@ a:hover{
   min-height: 90vh;
 }
 
+.tophalf {
+  display: flex;
+  align-items: center;
+}
+
+.sideimage {
+  height: 300px;
+}
+
 #playerWrapper{
   margin-top: 80px;
   border: 1px solid white;
@@ -395,6 +404,25 @@ iframe{
 
 // ~~~~~~ COMMENTS
 
+#toggleComments{
+  width: 150px;
+  background-color: #af8f4d;
+  border-radius: 3px;
+  color: white;
+  font-weight: bold;
+  text-shadow: rgba(0, 0, 0, 0.694) 1px 1px;
+  text-align: center;
+  opacity: .7;
+}
+
+#toggleComments:hover {
+  background-color: #f5d075;
+  color: white;
+  text-shadow: rgba(0, 0, 0, 0.694) 1px 1px;
+  border-color: white;
+  opacity: .9;
+}
+
 .commentBox{
   button{ 
   background-color: #af8f4d;
@@ -411,7 +439,7 @@ iframe{
   background-color: #392b68;
   max-width: 600px;
   min-width: 420px;
-  display: flex;
+  display: none;
   flex-direction: column;
   align-items: center;
   justify-content: center;
