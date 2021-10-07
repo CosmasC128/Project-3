@@ -233,6 +233,10 @@ a:hover{
   justify-content: center;
   align-items: center;
   min-width: 86vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background: center;
+  background-image: url('../images/back2.jpg');
 }
 
 #aboveMatchesGrid{
@@ -246,12 +250,16 @@ a:hover{
   min-width: 300px;
 }
 
-#matchTitle{
+#matchesTitle{
   font-size: 40px;
+  min-width: 300px;
 }
 
 #matchFlavour{
-  font-size: 18px;
+  font-size: 14px;
+  white-space: nowrap;
+  text-align: center;
+  width: 95%;
 }
 
 #filtersDiv{
@@ -332,7 +340,11 @@ a:hover{
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-height: 90vh;
+  min-height: 95vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background: center;
+  background-image: url('../images/back2.jpg');
 }
 
 .tophalf {
@@ -355,13 +367,6 @@ a:hover{
 
 #matchEye{
   color: #af8f4d;
-}
-
-#matchTitle{
-  font-size: 14px;
-  white-space: nowrap;
-  text-align: center;
-  width: 95%;
 }
 
 #matchData{
@@ -583,6 +588,10 @@ iframe{
   flex-direction: column;
   align-items: center;
   height: 90vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background: center;
+  background-image: url('../images/back1.jpeg');
 }
 
 .adminUploader {
@@ -591,7 +600,7 @@ iframe{
   border: 1px solid rgba(0, 0, 0, 0.60);
   border-radius: 10px;
   margin:20px;
-  margin-top: 80px;
+  margin-top: 140px;
   padding: 20px;
   background-color: #392b68;
   width: 50%;
@@ -673,6 +682,8 @@ iframe{
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 200px;
+  padding: 20px;
   margin-top: 80px;
   border: 1px solid white;
   border-radius: 3px;
@@ -764,6 +775,10 @@ iframe{
   flex-direction: column;
   align-items: center;
   height: 90vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background: center;
+  background-image: url('../images/back1.jpeg');
 }
 
 .regBox form{
@@ -774,7 +789,7 @@ iframe{
 }
 
 #regBox{
-  margin-top: 80px;
+  margin-top: 140px;
   max-width: 600px;
   width: 60%;
   min-width: 300px;
@@ -833,6 +848,10 @@ iframe{
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background: center;
+  background-image: url('../images/back1.jpeg');
   height: 90vh;
 }
 
@@ -854,7 +873,7 @@ iframe{
 #logBox{
   display: flex;
   flex-grow: 1;
-  margin-top: 80px;
+  margin-top: 140px;
   max-width: 500px;
   max-height: 170px;
 }

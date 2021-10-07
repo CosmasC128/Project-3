@@ -56,7 +56,7 @@ const Matches = () => {
   return (<>
     <div className="matchesWrapper">
       <div id="aboveMatchesGrid">
-        <h1 id="matchTitle">See all the Matches!</h1>
+        <h1 id="matchesTitle">See all the Matches!</h1>
         <h2 id="matchFlavour">You can sort by the best rated matches, the most recent ones, the mosted viewed matches,<br/> or just alphabetically to find your favourite teams matches more easily!</h2>
         <Filters id="matchesFilters" handleFilterChange={handleFilterChange} handleSortBy={handleSortBy} {...filters}/>
       </div>
