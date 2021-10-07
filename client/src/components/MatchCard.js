@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import flame from '../images/fire.png'
+import snow from '../images/snowflake.png'
 
 const MatchCard = ({ id, title, rating, views, thumbNail }) => { //pull in usersViewed array through here as well
   // interact with database for title, url, and fire avgRating, match ID as well
@@ -17,7 +18,7 @@ const MatchCard = ({ id, title, rating, views, thumbNail }) => { //pull in users
         <img className="thumbnail" src={thumbNail} alt="match thumbnail"></img>
         <div className="matchCardData">
           <div id="cardRating">
-            <img id="cardFlame"src={flame} className='flaming'/>
+            <img id="cardFlame"src={ rating > 50 ? flame : snow } className='flaming'/>
             <div id="cardRating">{rating}%</div>
           </div>
           <div id="cardViews">

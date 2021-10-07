@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom'
 import axios from 'axios'
 import CommentCard from './CommentCard.js'
 import flame from '../images/fire.png'
+import snow from '../images/snowflake.png'
 
 const Match = () => {
 
@@ -29,6 +30,7 @@ const Match = () => {
   let views = match.views
   let votes = match.votes
   const comments = match.comments
+  const rating = match.rating
   // const usersVoted = match.usersVoted
   // const usersViewed = match.usersViewed
 
@@ -114,7 +116,13 @@ const Match = () => {
           <iframe id="iframeO" src={url} title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
           <div id="matchData">
             <div id="matchdataLeft">
-              <div className='fireBtn'><button className='fireBtn' type="submit" onClick={handleClick}><img src={flame} className='flaming'/></button></div>
+              <div className='fireBtn'>
+                { rating > 50 ? 
+                  <button className='fireBtn' id="fireButton" type="submit" onClick={handleClick}><img src={ flame } className='flaming'/></button>
+                  :
+                  <button className='fireBtn' id="iceButton" type="submit" onClick={handleClick}><img src={ snow } className='flaming'/></button>
+                }
+              </div>
               <div className='pt-2'>{ count ? Math.round(count / views * 100) : Math.round(match.votes / views * 100)}%</div>
             </div>
             <div id="matchdataRight">

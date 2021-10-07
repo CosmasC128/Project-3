@@ -517,12 +517,18 @@ iframe{
   width: 25px;
   }
 
-.fireBtn{
-  button { 
-    background-color:rgba(15, 15, 111, 0);
-    border-radius: 50%;
-    border: solid 2px orange;}
+#fireButton{
+  background-color:rgba(15, 15, 111, 0);
+  border-radius: 50%;
+  border: solid 2px orange;
 }
+
+#iceButton{ 
+  background-color:rgba(15, 15, 111, 0);
+  border-radius: 50%;
+  border: solid 2px rgb(23, 154, 255);
+}
+
 .fireBtn:hover {
   transform: scale(1.1);
   transition: 0.3s;
