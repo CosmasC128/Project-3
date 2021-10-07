@@ -107,27 +107,29 @@ const Match = () => {
 
   //usersVoted.includes(currentUserLoggedIn) swap this with 'true' below in the jsx under fire rating
   return (<>
-    <div>
-      <div className='container d-flex w-50 justify-content-center align-items-center videoBox'>
+    <div id="matchPage">
+      <div id="playerWrapper" className='container d-flex w-50 justify-content-center align-items-center videoBox'>
         <div className='p-3 text-center '>
-          <div className='text-white'>{ title }</div>
-          <iframe src={url} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
-          <div className='d-flex mt-3 justify-content-around align-items-center ' >
-            <div className='fireBtn'><button className='fireBtn' type="submit" onClick={handleClick}><img src={flame} className='flaming'/></button></div>
-            <div className='pt-2'><span id="firePNG"><img src={flame} /></span> <span className='views'>{ count ? Math.round(count / views * 100) : Math.round(match.votes / views * 100)} %</span> </div>
-            <div className='pt-2'> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-eye-fill" viewBox="0 0 16 16">
-              <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
-              <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
-            </svg> {viewsCount}</div>
+          <div id="matchTitle"className='text-white'>{ title }</div>
+          <iframe id="iframeO" src={url} title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+          <div id="matchData">
+            <div id="matchdataLeft">
+              <div className='fireBtn'><button className='fireBtn' type="submit" onClick={handleClick}><img src={flame} className='flaming'/></button></div>
+              <div className='pt-2'>{ count ? Math.round(count / views * 100) : Math.round(match.votes / views * 100)}%</div>
+            </div>
+            <div id="matchdataRight">
+              <svg id="matchEye" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-eye-fill" viewBox="0 0 16 16">
+                <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
+                <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
+              </svg> {viewsCount}
+            </div>
           </div>
         </div>
       </div>
-      
-  
-      <div className='container pt-3 d-flex justify-content-center commentBox'>
-        
-        <div className='container-item p-3 insideBox'>
-          <h4 className='text-center' >Comments</h4>
+
+      <div id="commentWrapper" className='container pt-3 d-flex justify-content-center commentBox'>
+        <div className='commentsBox'>
+          <h4 className='text-center' id="commentsTitle" >~ Comments ~</h4>
           { comments ? comments.map(comment => { 
             return <CommentCard key={comment._id} { ...comment } matchId={ id } getMatch={ getMatch }/>
           })
@@ -138,7 +140,7 @@ const Match = () => {
             
             <textarea
               type="text" 
-              placeholder="Write a comment... " 
+              placeholder="Write a comment" 
               name="text" 
               onChange={handleChange}
               value={formData.text}

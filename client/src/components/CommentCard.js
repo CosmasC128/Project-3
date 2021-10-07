@@ -22,9 +22,17 @@ const CommentCard = ({ matchId, _id, username, text, createdAt, getMatch }) => {
   }
 
   return (  
-    <div className='text-center'>
-      <div>{text} User: {username} / { createdAt.slice(0,10) } { createdAt.slice(11, 16) } </div>
-      { userIsAuthenticated() ? <button id="commentDelete" onClick={handleDelete}>Delete</button> : <div></div> }
+    <div id="oneCommentRow" className="row">
+      <div className="oneCommentBox">
+        <div id="writingInBox">
+          <div id="commentHeader">
+            <div id="poster">{username}</div>
+            <div id="timeDiv">{ Number(createdAt.slice(11, 13)) < 9 ? '0' + String(Number(createdAt.slice(11, 13)) + 1) :  Number(createdAt.slice(11, 13)) + 1 }:{ createdAt.slice(14, 16) } { createdAt.slice(8,10) }-{ createdAt.slice(5,7) }-{ createdAt.slice(0,4) } </div>
+          </div>
+          <div id="commentText">{text}</div>
+        </div>
+        { userIsAuthenticated() ? <button id="commentDelete" onClick={handleDelete}>DEL</button> : <></> }
+      </div>
     </div>
   )
 }

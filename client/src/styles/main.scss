@@ -232,6 +232,7 @@ a:hover{
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  min-width: 86vh;
 }
 
 #aboveMatchesGrid{
@@ -326,6 +327,182 @@ a:hover{
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ MATCH PAGE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+
+#matchPage{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 90vh;
+}
+
+#playerWrapper{
+  margin-top: 80px;
+  border: 1px solid white;
+  border-radius: 3px;
+  background-color: #392b68;
+  max-width: 600px;
+  min-width: 420px;
+}
+
+#matchEye{
+  color: #af8f4d;
+}
+
+#matchTitle{
+  font-size: 14px;
+  white-space: nowrap;
+  text-align: center;
+  width: 95%;
+}
+
+#matchData{
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 5px;
+  margin-left: 30px;
+  margin-right: 30px;
+  margin-bottom: 0;
+  align-items: center;
+}
+
+#matchdataLeft{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 16%;
+}
+
+#matchdataRight{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 16%;
+}
+
+// ~~~~~~~ IFRAME
+
+iframe{
+  width: 560px; 
+  height: 315px;
+}
+
+#iframeO{
+  border: 2.5px solid #af8f4d;
+  border-radius: 3px;
+}
+
+// ~~~~~~ COMMENTS
+
+.commentBox{
+  button{ 
+  background-color: #af8f4d;
+  color: white;
+  font-weight: bold;
+  text-shadow: 1px 1px 1px #000000;
+  }
+}
+.commentsBox{
+  margin-top: 20px;
+  margin-bottom: 40px;
+  border: 1px solid white;
+  border-radius: 3px;
+  background-color: #392b68;
+  max-width: 600px;
+  min-width: 420px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#commentsTitle{
+  margin-top: 20px;
+  margin-bottom: 15px;
+  border-bottom: 1px solid white;
+  width: 100%;
+}
+
+.commentsBox form{
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  text-align: center;
+}
+
+.commentsBox form textarea{
+  width: 90%;
+  margin: 3px;
+  text-align: center;
+  vertical-align: middle;
+  height: 120px;
+}
+
+#commentSubmit {
+  width: 90%;
+  background-color: #af8f4d;
+  padding: 5px 5px 20px 5px;
+  border-radius: 6px;
+  margin: 3px;
+  height: 15px;
+  color: white;
+  font-weight: bold;
+  text-shadow: rgba(0, 0, 0, 0.694) 1px 1px;
+  text-align: center;
+}
+
+#commentSubmit:hover {
+  background-color: #f5d075;
+  color: white;
+  text-shadow: rgba(0, 0, 0, 0.694) 1px 1px;
+  border-color: white;
+}
+
+// COMMENT ROWS AND BOXES
+
+#oneCommentRow{
+  width: 100%;
+  border-bottom: 1px solid white;
+  padding-bottom: 5px;
+}
+
+#writingInBox{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 5px;
+}
+
+#commentHeader{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.516);
+}
+
+#commentDelete {
+  background-color: rgba(255, 255, 255, 0.516);
+  border-radius: 3px;
+  height: 30px;
+  padding: 3px;
+  color: white;
+  font-weight: bold;
+  text-shadow: rgba(0, 0, 0, 0.694) 1px 1px;
+  right:0;
+}
+
+#commentDelete:hover {
+  background-color: #f5d075;
+  color: white;
+  text-shadow: rgba(0, 0, 0, 0.694) 1px 1px;
+  border-color: white;
+}
+
+
+
+  // ~~~ FIRE EMOJI AND BUTTON 
+
 #firePNG{
   img{
     max-width: 25px;
@@ -336,46 +513,9 @@ a:hover{
 .fireBtn {
   display: flex;
   justify-content: center;
+  height: 25px;
+  width: 25px;
   }
-
-#commentSubmit, #commentDelete {
-  background-color: #af8f4d;
-  padding: 5px 5px 20px 5px;
-  border-radius: 6px;
-  height: 15px;
-  color: white;
-  font-weight: bold;
-  text-shadow: rgba(0, 0, 0, 0.694) 1px 1px;
-}
-
-#commentSubmit:hover, #commentDelete:hover {
-  background-color: #f5d075;
-  color: white;
-  text-shadow: rgba(0, 0, 0, 0.694) 1px 1px;
-  border-color: white;
-}
-
-.videoBox{
-      max-width: 600px;
-      background-color: rgb(53, 53, 53);
-      border: #af8f4d solid 1px;
-    }
-  
-  
-.commentBox{
-  button{
-    background-color: #af8f4d;
-    color: white;
-    font-weight: bold;
-    text-shadow: 1px 1px 1px #000000;}
-    
-  }
-  .insideBox{
-    background-color: rgb(53, 53, 53);
-    border: #af8f4d solid 1px;
-  }
-
-
 
 .fireBtn{
   button { 
@@ -399,22 +539,8 @@ a:hover{
 
 @keyframes flame {
   0% {transform:scale(1);}
-  
-  
   80% {transform:scale(1.2,1.4);}
-  
-  
 }
-
-iframe{
-  width: 560px; 
-  height: 315px;
-}
-
-
-
-
-
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ADMIN UPLOAD ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
