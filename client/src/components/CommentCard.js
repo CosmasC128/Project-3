@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { userIsAuthenticated, getTokenFromLocalStorage } from '../helpers/auth.js'
 import axios from 'axios'
 
@@ -7,6 +7,24 @@ const CommentCard = ({ matchId, _id, username, text, createdAt, getMatch }) => {
   // This is to get the specific match
   /// COMMENTS CODE
     
+  const [ user, setUser ] = useState([])
+
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const { data } = await axios.get(
+          '/api/user',
+          {
+            headers: { Authorization: `Bearer ${getTokenFromLocalStorage()}` },
+          })
+        setUser(data)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    getData()
+  }, [])
+
   const handleDelete = async () => {
     try {
       await axios.delete(
@@ -31,7 +49,7 @@ const CommentCard = ({ matchId, _id, username, text, createdAt, getMatch }) => {
           </div>
           <div id="commentText">{text}</div>
         </div>
-        { userIsAuthenticated() ? <button id="commentDelete" onClick={handleDelete}>DEL</button> : <></> }
+        { ((userIsAuthenticated() && (user.username === username)) || (userIsAuthenticated() && (user.username === 'admin'))) ? <button id="commentDelete" onClick={handleDelete}>DEL</button> : <></> }
       </div>
     </div>
   )

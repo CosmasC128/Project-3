@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { getTokenFromLocalStorage } from '../helpers/auth.js'
+import { getTokenFromLocalStorage, userIsAuthenticated } from '../helpers/auth.js'
 import { useParams } from 'react-router-dom'
 // import { userIsAuthenticated } from '../helpers/auth.js'
 import axios from 'axios'
@@ -136,18 +136,24 @@ const Match = () => {
             :
             <div>No comments yet</div>
           }
-          <form className=' m-3 d-flex justify-content-center align-items-center' onSubmit={handleSubmit}>
-            
-            <textarea
-              type="text" 
-              placeholder="Write a comment" 
-              name="text" 
-              onChange={handleChange}
-              value={formData.text}
-            >
-            </textarea>
-            <button id="commentSubmit">Submit</button>
-          </form>
+          { userIsAuthenticated() ?
+            <form className=' m-3 d-flex justify-content-center align-items-center' onSubmit={handleSubmit}>
+              <textarea
+                type="text" 
+                placeholder="Write a comment" 
+                name="text" 
+                onChange={handleChange}
+                value={formData.text}
+              >
+              </textarea>
+              <button id="commentSubmit">Submit</button>
+            </form>
+            :
+            <>
+              <br/>
+              <h6>Log in to comment</h6>
+            </>
+          }
         </div>
       </div>
     </div>
