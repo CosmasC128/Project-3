@@ -32,10 +32,10 @@ const Match = () => {
   const comments = match.comments
   const rating = match.rating
   // const usersVoted = match.usersVoted
-  // const usersViewed = match.usersViewed
+  const usersViewed = match.usersViewed
 
 
-  // *** ADMIN VERIFICATION
+  // *** GET A USER FOR UNIQUE VIEWS/VOTES AND ADMIN VERIFICATION
 
   const history = useHistory()
   const location = useLocation()
@@ -61,32 +61,27 @@ const Match = () => {
     getData()
   }, [])
 
-  // let loggedUser = user
+  const loggedUser = user
+  console.log(loggedUser)
 
-  // *** VIEWS CODE
+  // *** UPDATE MATCH FOR USERS AND VIEWS CODE
   // in this code, add in a caveat that if the currently logged in users is in the array of usersViewed, we don't run get views
   const [viewsCount, setViewsCount] = useState()
 
   const getViews = async () => {
-    if (views > 0) {
-      views++
-
-      // usersViewed.push(currentUserLoggedIn)  Push the user into the user array we have local to match.js
-      // await axios.put(`/api/matches/${id}`, { usersViewed: currentUserLoggedIn }) PUT that array back into the database
-      
-      await axios.put(`/api/matches/${id}`, { views: views })
-      
-      const newViews = await axios.get(`/api/matches/${id}`)
-      setViewsCount(newViews.data.views)
+    if ( views > 0 ) {
+      if (!usersViewed.includes(loggedUser)) {
+        views++
+        usersViewed.push(loggedUser)
+        await axios.put(`/api/matches/${id}`, { views: views , usersViewed: usersViewed })
+        const updatedMatch = await axios.get(`/api/matches/${id}`)
+        console.log(updatedMatch)
+        setViewsCount(updatedMatch.data.views)
+      }
     }
   }
-
-  // if (!usersViewed.includes(currentUserLoggedIn)){ //FIX THIS CODE IT IS BROKEN RIGHT NOW
-  // }
-  // wrap this around getViews so it doesn't run on pageload if the user had already seen the match.
-
+  
   getViews()
-
   // *** BUTTON CODE
   //need to update VIEWS on VISIT, then save to database
   const [clicked, setClicked] = useState(false)
@@ -130,6 +125,11 @@ const Match = () => {
           headers: { Authorization: `Bearer ${getTokenFromLocalStorage()}` },
         }
       )
+      setFormData({
+        text: '',
+        rating: '',
+        owner: '',
+      })
       getMatch()
     } catch (err) {
       console.log(err)  

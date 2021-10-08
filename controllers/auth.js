@@ -21,7 +21,7 @@ export const loginUser = async (req, res) => {
     if (!userToLogin || !userToLogin.validatePassword(req.body.password)){
       throw new Error()
     }
-    const token = jwt.sign({ sub: userToLogin._id }, secret, { expiresIn: '7 days' })
+    const token = jwt.sign({ sub: userToLogin._id, username: userToLogin.username }, secret, { expiresIn: '7 days' })
     console.log('TOKEN ->', token)
     return res.status(200).json({ 
       message: `Welcome back ${userToLogin.username}`,

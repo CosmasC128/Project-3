@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { Link, useHistory, useLocation } from 'react-router-dom'
-import { userIsAuthenticated } from '../helpers/auth'
-import axios from 'axios'
-import { getTokenFromLocalStorage } from '../helpers/auth.js'
+import { getUsername, userIsAuthenticated } from '../helpers/auth.js'
+// import axios from 'axios'
 
 const NavBar = () => {
 
@@ -20,23 +19,23 @@ const NavBar = () => {
   }
 
 
-  const [ user, setUser ] = useState([])
+  // const [ user, setUser ] = useState([])
 
-  useEffect(() => {
-    const getData = async () => {
-      try {
-        const { data } = await axios.get(
-          '/api/user',
-          {
-            headers: { Authorization: `Bearer ${getTokenFromLocalStorage()}` },
-          })
-        setUser(data)
-      } catch (error) {
-        console.log(error)
-      }
-    }
-    getData()
-  }, [])
+  // useEffect(() => {
+  //   const getData = async () => {
+  //     try {
+  //       const { data } = await axios.get(
+  //         '/api/user',
+  //         {
+  //           headers: { Authorization: `Bearer ${getTokenFromLocalStorage()}` },
+  //         })
+  //       setUser(data)
+  //     } catch (error) {
+  //       console.log(error)
+  //     }
+  //   }
+  //   getData()
+  // }, [])
   // if user is logged in, should display logout button/code instead of login/register
   // background image and styling
 
@@ -46,7 +45,7 @@ const NavBar = () => {
         <Link to="/" id="navLink">Home</Link>
         <Link to="/matches" id="navLink">ProMatches</Link>
         {
-          user.username === 'admin' ? 
+          getUsername() && getUsername() === 'admin' ? 
             <Link to="/AdminUpload" id="navLink">Admin Upload</Link>
             :
             <>
@@ -54,7 +53,7 @@ const NavBar = () => {
         }
         {
           userIsAuthenticated() ? 
-            <span id="navLinkLogout" onClick={handleLogout}>Logout: { user.username }</span>
+            <span id="navLinkLogout" onClick={handleLogout}>Logout: { getUsername() }</span>
             :
             <>
               <Link to="/login" id="navLink">Login</Link>

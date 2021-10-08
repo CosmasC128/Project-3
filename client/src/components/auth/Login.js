@@ -1,6 +1,7 @@
 import axios from 'axios'
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
+// import { getUsername } from '../../helpers/auth.js'
 
 const Login = () => {
 
@@ -27,8 +28,9 @@ const Login = () => {
     try {
       const { data } = await axios.post('api/login', formData)
       setTokenToLocalStorage(data.token)
+      
       history.push('/matches')
-      // console.log(data.token)
+
     } catch (err) {
       console.log(err)
     }
