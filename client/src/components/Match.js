@@ -44,8 +44,10 @@ const Match = () => {
       // usersViewed.push(currentUserLoggedIn)  Push the user into the user array we have local to match.js
       // await axios.put(`/api/matches/${id}`, { usersViewed: currentUserLoggedIn }) PUT that array back into the database
       await axios.put(`/api/matches/${id}`, { views: views })
-      
       const newViews = await axios.get(`/api/matches/${id}`)
+      setViewsCount(newViews.data.views)
+    } else if ( views === 0) {
+      const newViews = await axios.put(`/api/matches/${id}`, { views: 1 })
       setViewsCount(newViews.data.views)
     }
   }
@@ -167,7 +169,7 @@ const Match = () => {
         <div id="playerWrapper" className='container d-flex w-50 justify-content-center align-items-center videoBox'>
           <div className='p-3 text-center '>
             { user.username === 'admin' ? <button id="deleteMatchBtn" onClick={ handleDeleteMatch }>Delete Match</button> : <></> }
-            <div id="matchTitle"className='text-white'>{ title }</div>
+            <div id="matchTitle"className='text-white'>{ title ? title.slice(0, 55) : 'loading...' }</div>
             <iframe id="iframeO" src={url} title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
             <div id="matchData">
               <div id="matchdataLeft">
@@ -178,7 +180,7 @@ const Match = () => {
                     <button className='fireBtn' id="iceButton" type="submit" onClick={handleClick}><img src={ snow } className='flaming'/></button>
                   }
                 </div>
-                <div className='pt-2'>{ count ? (views > 0 ? Math.round(count / views * 100) : 0 ) :  (views > 0 ? Math.round(match.votes / views * 100) : 0 ) }%</div>
+                <div className='pt-2'>{ count ? (views > 0 ? Math.round(count / views * 100) : Math.round(count / 1 * 100) ) :  (views > 0 ? Math.round(match.votes / views * 100) : Math.round(match.votes / 1 * 100) ) }%</div>
               </div>
               <button id="toggleComments" onClick={ handleShow }>Show Comments</button>
               <div id="matchdataRight">

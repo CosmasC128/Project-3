@@ -26,8 +26,8 @@ const AdminUpload = () => {
   const [updateForm, setUpdateForm] = useState({
     title: '', 
     url: '', 
-    views: 1,
-    votes: 1,
+    views: 0,
+    votes: 0,
   })
 
   const handleChange = (event) => {

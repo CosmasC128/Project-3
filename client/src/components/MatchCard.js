@@ -8,7 +8,7 @@ const MatchCard = ({ id, title, rating, views, thumbNail }) => { //pull in users
   return (<>
     <div className="cardWrapper">
       <Link to={`/matches/${ id }`} id="cardLink">
-        <div id="cardTitle">{ title.slice(0, 18) }</div>
+        <div id="cardTitle">{ title.slice(0, 18) + '...' }</div>
         <img className="thumbnail" src={thumbNail} alt="match thumbnail"></img>
         <div className="matchCardData">
           <div id="cardRating">
