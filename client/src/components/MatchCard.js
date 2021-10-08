@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import flame from '../images/fire.png'
 import snow from '../images/snowflake.png'
 
-const MatchCard = ({ id, title, rating, views, thumbNail }) => { //pull in usersViewed array through here as well
+const MatchCard = ({ id, title, rating, views, thumbNail }) => {
 
   return (<>
     <div className="cardWrapper">

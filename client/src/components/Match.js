@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { getTokenFromLocalStorage, userIsAuthenticated } from '../helpers/auth.js'
+import { getTokenFromLocalStorage, getUsername, userIsAuthenticated } from '../helpers/auth.js'
 import { useParams, useHistory, useLocation } from 'react-router-dom'
 
 import axios from 'axios'
@@ -43,25 +43,7 @@ const Match = () => {
   useEffect(() => {
   }, [location.pathname])
 
-  const [ user, setUser ] = useState([])
-
-  useEffect(() => {
-    const getData = async () => {
-      try {
-        const { data } = await axios.get(
-          '/api/user',
-          {
-            headers: { Authorization: `Bearer ${getTokenFromLocalStorage()}` },
-          })
-        setUser(data)
-      } catch (error) {
-        console.log(error)
-      }
-    }
-    getData()
-  }, [])
-
-  const loggedUser = user
+  const loggedUser = getUsername()
   console.log(loggedUser)
 
   // *** UPDATE MATCH FOR USERS AND VIEWS CODE
@@ -166,7 +148,7 @@ const Match = () => {
         <img className='sideimage' src={'https://the-page-of-legends.webnode.es/_files/200000278-b85cdb9559/morgana_blademistress2.png'}></img>
         <div id="playerWrapper" className='container d-flex w-50 justify-content-center align-items-center videoBox'>
           <div className='p-3 text-center '>
-            { user.username === 'admin' ? <button id="deleteMatchBtn" onClick={ handleDeleteMatch }>Delete Match</button> : <></> }
+            { getUsername() === 'admin' ? <button id="deleteMatchBtn" onClick={ handleDeleteMatch }>Delete Match</button> : <></> }
             <div id="matchTitle"className='text-white'>{ title }</div>
             <iframe id="iframeO" src={url} title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
             <div id="matchData">

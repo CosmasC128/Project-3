@@ -18,27 +18,6 @@ const NavBar = () => {
     history.push('/')
   }
 
-
-  // const [ user, setUser ] = useState([])
-
-  // useEffect(() => {
-  //   const getData = async () => {
-  //     try {
-  //       const { data } = await axios.get(
-  //         '/api/user',
-  //         {
-  //           headers: { Authorization: `Bearer ${getTokenFromLocalStorage()}` },
-  //         })
-  //       setUser(data)
-  //     } catch (error) {
-  //       console.log(error)
-  //     }
-  //   }
-  //   getData()
-  // }, [])
-  // if user is logged in, should display logout button/code instead of login/register
-  // background image and styling
-
   return (
     <div id='navbar'>
       <div id="navwrap">
