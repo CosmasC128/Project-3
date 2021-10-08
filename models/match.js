@@ -25,7 +25,11 @@ const matchSchema = new mongoose.Schema({
   //! FIRE RATING - votes / views
   matchSchema.virtual('rating')
   .get(function(){
-    return Number(((this.votes / this.views) * 100).toFixed(0))
+    if ( this.views !== 0 && this.votes ){
+      return Number(((this.votes / this.views) * 100).toFixed(0))
+    } else {
+      return 0
+    }
   })
 
   matchSchema.virtual('thumbNail')

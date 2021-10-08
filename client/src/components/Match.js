@@ -41,10 +41,8 @@ const Match = () => {
   const getViews = async () => {
     if (views > 0) {
       views++
-
       // usersViewed.push(currentUserLoggedIn)  Push the user into the user array we have local to match.js
       // await axios.put(`/api/matches/${id}`, { usersViewed: currentUserLoggedIn }) PUT that array back into the database
-      
       await axios.put(`/api/matches/${id}`, { views: views })
       
       const newViews = await axios.get(`/api/matches/${id}`)
@@ -85,7 +83,6 @@ const Match = () => {
   // *** COMMENT CODE
   const [formData, setFormData] = useState({
     text: '',
-    rating: '',
     owner: '',
   })
 
@@ -104,6 +101,10 @@ const Match = () => {
           headers: { Authorization: `Bearer ${getTokenFromLocalStorage()}` },
         }
       )
+      setFormData({
+        text: '',
+        owner: '',
+      })
       getMatch()
     } catch (err) {
       console.log(err)  
@@ -177,14 +178,14 @@ const Match = () => {
                     <button className='fireBtn' id="iceButton" type="submit" onClick={handleClick}><img src={ snow } className='flaming'/></button>
                   }
                 </div>
-                <div className='pt-2'>{ count ? Math.round(count / views * 100) : Math.round(match.votes / views * 100)}%</div>
+                <div className='pt-2'>{ count ? (views > 0 ? Math.round(count / views * 100) : 0 ) :  (views > 0 ? Math.round(match.votes / views * 100) : 0 ) }%</div>
               </div>
               <button id="toggleComments" onClick={ handleShow }>Show Comments</button>
               <div id="matchdataRight">
                 <svg id="matchEye" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-eye-fill" viewBox="0 0 16 16">
                   <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
                   <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
-                </svg> {viewsCount}
+                </svg> { viewsCount ? viewsCount : 0 }
               </div>
             </div>
           </div>
