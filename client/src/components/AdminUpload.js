@@ -26,8 +26,8 @@ const AdminUpload = () => {
   const [updateForm, setUpdateForm] = useState({
     title: '', 
     url: '', 
-    views: 1,
-    votes: 1,
+    views: 0,
+    votes: 0,
   })
 
   const handleChange = (event) => {
@@ -57,11 +57,11 @@ const AdminUpload = () => {
             <h1 className="uploadTitle">Yay! More Videos!</h1>
             <form onSubmit={handleSubmit} id="uploadForm">
               <div className="form-field uploadField">
-                <label htmlFor="password" className="uploadLabel">Username</label>
+                <label htmlFor="password" className="uploadLabel">Title</label>
                 <input className="uploaderItem" type="text" placeholder="Title " name="title"  onChange={handleChange} value={updateForm.title}></input>
               </div>
               <div className="form-field uploadField">
-                <label htmlFor="password" className="uploadLabel">Password</label>
+                <label htmlFor="password" className="uploadLabel">URL</label>
                 <input className="uploaderItem" type="text" placeholder="Url " name="url"  onChange={handleChange} value={updateForm.url}></input>
               </div>
               <button className="uploaderItem" id="uploadBtn">SUBMIT</button>

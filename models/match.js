@@ -15,8 +15,8 @@ const matchSchema = new mongoose.Schema({
   votes: { type: Number, required: true },
   owner: { type: mongoose.Schema.ObjectId, ref: 'User', required: true }, // our relationship(!) SOMETHING FUCKY - ADDING ID OF MATCH AND NOT ADMIN
   // ObjectId relates to the User model, and is one specific user's ID
-  usersViewed: [],
-  usersVoted: [],
+  usersViewed: { type: Array, required: false },
+  usersVoted: { type: Array, required: false },
   comments: [commentSchema]
   }, {
     timestamps: true
@@ -25,7 +25,11 @@ const matchSchema = new mongoose.Schema({
   //! FIRE RATING - votes / views
   matchSchema.virtual('rating')
   .get(function(){
-    return Number(((this.votes / this.views) * 100).toFixed(0))
+    if ( this.views !== 0 && this.votes ){
+      return Number(((this.votes / this.views) * 100).toFixed(0))
+    } else {
+      return 0
+    }
   })
 
   matchSchema.virtual('thumbNail')

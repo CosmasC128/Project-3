@@ -34,6 +34,35 @@ const Match = () => {
   // const usersVoted = match.usersVoted
   // const usersViewed = match.usersViewed
 
+
+  // *** ADMIN VERIFICATION
+
+  const history = useHistory()
+  const location = useLocation()
+
+  useEffect(() => {
+  }, [location.pathname])
+
+  const [ user, setUser ] = useState([])
+
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const { data } = await axios.get(
+          '/api/user',
+          {
+            headers: { Authorization: `Bearer ${getTokenFromLocalStorage()}` },
+          })
+        setUser(data)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    getData()
+  }, [])
+
+  // let loggedUser = user
+
   // *** VIEWS CODE
   // in this code, add in a caveat that if the currently logged in users is in the array of usersViewed, we don't run get views
   const [viewsCount, setViewsCount] = useState()
@@ -57,9 +86,6 @@ const Match = () => {
   // wrap this around getViews so it doesn't run on pageload if the user had already seen the match.
 
   getViews()
-
-
-
 
   // *** BUTTON CODE
   //need to update VIEWS on VISIT, then save to database
@@ -120,31 +146,6 @@ const Match = () => {
     }
   }
 
-  // *** ADMIN VERIFICATION
-
-  const history = useHistory()
-  const location = useLocation()
-
-  useEffect(() => {
-  }, [location.pathname])
-
-  const [ user, setUser ] = useState([])
-
-  useEffect(() => {
-    const getData = async () => {
-      try {
-        const { data } = await axios.get(
-          '/api/user',
-          {
-            headers: { Authorization: `Bearer ${getTokenFromLocalStorage()}` },
-          })
-        setUser(data)
-      } catch (error) {
-        console.log(error)
-      }
-    }
-    getData()
-  }, [])
   
   const handleDeleteMatch = async () => {
     try {
@@ -177,7 +178,7 @@ const Match = () => {
                     <button className='fireBtn' id="iceButton" type="submit" onClick={handleClick}><img src={ snow } className='flaming'/></button>
                   }
                 </div>
-                <div className='pt-2'>{ count ? Math.round(count / views * 100) : Math.round(match.votes / views * 100)}%</div>
+                <div className='pt-2'>{ count ? (views > 0 ? Math.round(count / views * 100) : '0') :  (views > 0 ? Math.round(match.votes / views * 100) : '0') }%</div>
               </div>
               <button id="toggleComments" onClick={ handleShow }>Show Comments</button>
               <div id="matchdataRight">
