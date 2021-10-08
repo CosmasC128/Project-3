@@ -10,11 +10,13 @@ import snow from '../images/snowflake.png'
 const Match = () => {
 
   const { id } = useParams()
+  console.log(useParams())
   const [ match, setMatch ] = useState([])
   
   const getMatch = async () => {
     try {
       const matchGet = await axios.get(`/api/matches/${id}`)
+      console.log(matchGet, 'match get')
       setMatch(matchGet.data)
     } catch (error) {
       console.log(error)
@@ -32,7 +34,7 @@ const Match = () => {
   const comments = match.comments
   const rating = match.rating
   // const usersVoted = match.usersVoted
-  const usersViewed = match.usersViewed
+  // const usersViewed = match.usersViewed
 
 
   // *** GET A USER FOR UNIQUE VIEWS/VOTES AND ADMIN VERIFICATION
@@ -43,8 +45,8 @@ const Match = () => {
   useEffect(() => {
   }, [location.pathname])
 
-  const loggedUser = getUsername()
-  console.log(loggedUser)
+  // const loggedUser = getUsername()
+  // console.log(loggedUser)
 
   // *** UPDATE MATCH FOR USERS AND VIEWS CODE
   // in this code, add in a caveat that if the currently logged in users is in the array of usersViewed, we don't run get views
@@ -52,14 +54,12 @@ const Match = () => {
 
   const getViews = async () => {
     if ( views > 0 ) {
-      if (!usersViewed.includes(loggedUser)) {
-        views++
-        usersViewed.push(loggedUser)
-        await axios.put(`/api/matches/${id}`, { views: views , usersViewed: usersViewed })
-        const updatedMatch = await axios.get(`/api/matches/${id}`)
-        console.log(updatedMatch)
-        setViewsCount(updatedMatch.data.views)
-      }
+      views++
+      // usersViewed.push(loggedUser)
+      await axios.put(`/api/matches/${id}`, { views: views }) //, usersViewed: usersViewed }
+      const updatedMatch = await axios.get(`/api/matches/${id}`)
+      // console.log(updatedMatch)
+      setViewsCount(updatedMatch.data.views)
     }
   }
   
@@ -73,10 +73,8 @@ const Match = () => {
     if (!clicked) {
       setClicked(true)
       votes++
-
       // usersVoted.push(currentUserLoggedIn)  Push the user into the user array we have local to match.js
       // await axios.put(`/api/matches/${id}`, { usersVoted: usersVoted }) PUT that array back into the database
-
       await axios.put(`/api/matches/${id}`, { votes: votes })
       const match = await axios.get(`/api/matches/${id}`)
       setCount(match.data.votes)
@@ -88,7 +86,6 @@ const Match = () => {
   // *** COMMENT CODE
   const [formData, setFormData] = useState({
     text: '',
-    rating: '',
     owner: '',
   })
 
@@ -109,7 +106,6 @@ const Match = () => {
       )
       setFormData({
         text: '',
-        rating: '',
         owner: '',
       })
       getMatch()
@@ -119,7 +115,6 @@ const Match = () => {
   }
 
   const commentsBox = document.getElementById('commentsBox')
-
   const handleShow = () => {
     if (commentsBox.style.display === 'flex') {
       commentsBox.style.display = 'none'
@@ -209,38 +204,3 @@ const Match = () => {
 }
 
 export default Match
-
-
-
-
-
-
-
-// return (<>
-//   <div className="playerWrapper">
-//     <div>{ title }</div>
-//     <iframe width="560" height="315" src={url} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
-//     <div className="fireWrap">
-//       <div>Fire Rating: { count ? count / views * 100 : match.votes / views * 100} %</div>
-//       <div className='fireBtn'><button className="btn btn-primary" type="submit" onClick={handleClick}>🔥 Fire 🔥</button></div>
-//     </div>
-//     <div>Views: {viewsCount}</div>
-//   </div>
-//   { comments ? comments.map(comment => { 
-//     return <CommentCard key={comment._id} { ...comment } matchId={ id } getMatch={ getMatch }/>
-//   })
-//     :
-//     <div>No comments yet</div>
-//   }
-//   <form onSubmit={handleSubmit}>
-//     <textarea
-//       type="text" 
-//       placeholder="Write a comment... " 
-//       name="text" 
-//       onChange={handleChange}
-//       value={formData.text}
-//     >
-//     </textarea>
-//     <button>Submit</button>
-//   </form>
-// </>)

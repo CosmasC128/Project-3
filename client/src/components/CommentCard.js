@@ -1,9 +1,11 @@
 import React from 'react'
-import { userIsAuthenticated, getUsername, getTokenFromLocalStorage } from '../helpers/auth.js'
+import { userIsAuthenticated, getTokenFromLocalStorage, getUsername } from '../helpers/auth.js'
 import axios from 'axios'
 
 const CommentCard = ({ matchId, _id, username, text, createdAt, getMatch }) => {
 
+  // This is to get the specific match
+  /// COMMENTS CODE
 
   const handleDelete = async () => {
     try {
