@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { getTokenFromLocalStorage, userIsAuthenticated } from '../helpers/auth.js'
+import { getTokenFromLocalStorage, getUsername, userIsAuthenticated } from '../helpers/auth.js'
 import { useParams, useHistory, useLocation } from 'react-router-dom'
 
 import axios from 'axios'
@@ -31,18 +31,17 @@ const Match = () => {
   let votes = match.votes
   const comments = match.comments
   const rating = match.rating
-  // const usersVoted = match.usersVoted
-  // const usersViewed = match.usersViewed
+  // let usersViewed = 
+  // const loggedUser = getUsername()
 
   // *** VIEWS CODE
   // in this code, add in a caveat that if the currently logged in users is in the array of usersViewed, we don't run get views
+  
   const [viewsCount, setViewsCount] = useState()
 
-  const getViews = async () => {
+  const updateViews = async () => {
     if (views > 0) {
       views++
-      // usersViewed.push(currentUserLoggedIn)  Push the user into the user array we have local to match.js
-      // await axios.put(`/api/matches/${id}`, { usersViewed: currentUserLoggedIn }) PUT that array back into the database
       await axios.put(`/api/matches/${id}`, { views: views })
       const newViews = await axios.get(`/api/matches/${id}`)
       setViewsCount(newViews.data.views)
@@ -52,14 +51,25 @@ const Match = () => {
     }
   }
 
+  // const updateViewerHistory = async (usersViewed) => {
+  //   console.log(usersViewed, 'if I get here just check my put')
+  //   // await axios.put(`/api/matches/${id}`, { usersViewed: usersViewed })
+  // }
+
   // if (!usersViewed.includes(currentUserLoggedIn)){ //FIX THIS CODE IT IS BROKEN RIGHT NOW
   // }
-  // wrap this around getViews so it doesn't run on pageload if the user had already seen the match.
+  // wrap this around updateViews so it doesn't run on pageload if the user had already seen the match.
+  if (userIsAuthenticated()){
+    updateViews()
+  }
 
-  getViews()
-
-
-
+  // if (loggedUser){
+  //   if (!usersViewed.includes(loggedUser)){
+  //     updateUsersViewed()
+  //     console.log(usersViewed, 'is that updated here')
+  //     updateViewerHistory(usersViewed)
+  //   }
+  // }
 
   // *** BUTTON CODE
   //need to update VIEWS on VISIT, then save to database
@@ -67,7 +77,7 @@ const Match = () => {
   const [count, setCount] = useState(0)
 
   const handleClick = async () => {
-    if (!clicked) {
+    if (!clicked && userIsAuthenticated()) {
       setClicked(true)
       votes++
 
@@ -77,8 +87,10 @@ const Match = () => {
       await axios.put(`/api/matches/${id}`, { votes: votes })
       const match = await axios.get(`/api/matches/${id}`)
       setCount(match.data.votes)
+    } else if (!clicked && !userIsAuthenticated()){
+      console.log('You must log in to vote!')
     } else {
-      console.log('handle click error')
+      console.log('You already voted!')
     }
   }
 
@@ -130,24 +142,6 @@ const Match = () => {
 
   useEffect(() => {
   }, [location.pathname])
-
-  const [ user, setUser ] = useState([])
-
-  useEffect(() => {
-    const getData = async () => {
-      try {
-        const { data } = await axios.get(
-          '/api/user',
-          {
-            headers: { Authorization: `Bearer ${getTokenFromLocalStorage()}` },
-          })
-        setUser(data)
-      } catch (error) {
-        console.log(error)
-      }
-    }
-    getData()
-  }, [])
   
   const handleDeleteMatch = async () => {
     try {
@@ -160,7 +154,7 @@ const Match = () => {
       console.log(error)
     }
   }
-
+  //rememeber to disabled the voting button if they're not logged in, or if they've already voted
 
   return (<>
     <div id="matchPage">
@@ -168,8 +162,8 @@ const Match = () => {
         <img className='sideimage' src={'https://the-page-of-legends.webnode.es/_files/200000278-b85cdb9559/morgana_blademistress2.png'}></img>
         <div id="playerWrapper" className='container d-flex w-50 justify-content-center align-items-center videoBox'>
           <div className='p-3 text-center '>
-            { user.username === 'admin' ? <button id="deleteMatchBtn" onClick={ handleDeleteMatch }>Delete Match</button> : <></> }
-            <div id="matchTitle"className='text-white'>{ title ? title.slice(0, 55) : 'loading...' }</div>
+            { getUsername() === 'admin' ? <button id="deleteMatchBtn" onClick={ handleDeleteMatch }>Delete Match</button> : <></> }
+            <div id="matchTitle"className='text-w89hite'>{ title ? title.slice(0, 55) : 'loading...' }</div>
             <iframe id="iframeO" src={url} title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
             <div id="matchData">
               <div id="matchdataLeft">
@@ -187,7 +181,7 @@ const Match = () => {
                 <svg id="matchEye" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-eye-fill" viewBox="0 0 16 16">
                   <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
                   <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
-                </svg> { viewsCount ? viewsCount : 0 }
+                </svg> { viewsCount ? viewsCount : views }
               </div>
             </div>
           </div>
@@ -229,38 +223,3 @@ const Match = () => {
 }
 
 export default Match
-
-
-
-
-
-
-
-// return (<>
-//   <div className="playerWrapper">
-//     <div>{ title }</div>
-//     <iframe width="560" height="315" src={url} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
-//     <div className="fireWrap">
-//       <div>Fire Rating: { count ? count / views * 100 : match.votes / views * 100} %</div>
-//       <div className='fireBtn'><button className="btn btn-primary" type="submit" onClick={handleClick}>🔥 Fire 🔥</button></div>
-//     </div>
-//     <div>Views: {viewsCount}</div>
-//   </div>
-//   { comments ? comments.map(comment => { 
-//     return <CommentCard key={comment._id} { ...comment } matchId={ id } getMatch={ getMatch }/>
-//   })
-//     :
-//     <div>No comments yet</div>
-//   }
-//   <form onSubmit={handleSubmit}>
-//     <textarea
-//       type="text" 
-//       placeholder="Write a comment... " 
-//       name="text" 
-//       onChange={handleChange}
-//       value={formData.text}
-//     >
-//     </textarea>
-//     <button>Submit</button>
-//   </form>
-// </>)
