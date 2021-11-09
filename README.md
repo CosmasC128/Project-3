@@ -1,5 +1,14 @@
 ## General Assembly Project 3 - GCW Fire Esports
 
+**Project Overview**
+
+For the third Project on our Software Engineering Immersive Course at General Assembly, we were tasked with building a Full Stack Application using the MERN stack, within 10 days in a group of pre-assigned members.
+
+As we were completing the course remotely it was a fantastic opportunity to utilise tools such as Slack, Zoom, Trello and GitHub. We had a morning Stand-Up where we were able to check progress and assist each other where necessary.
+
+For the project we wanted to build an Esports generator specifically for League Of Legends that would allow a user to quickly find the best match for them saving them time in their busy schedule. The user would be able to search by rating, date added, title or use a search function. The user can register and then be able to vote and leave messages to help others see the best match possible. We also implemented Admin user functionality that allows the Admin to delete other user comments and add videos directly from the site rather than the back-end database.
+
+
 **Time Frame**
 
 10 Days
@@ -12,18 +21,11 @@
 
 #### Project Brief
 
--   **Build a full-stack application**  by making your own backend and your own front-end
--   **Use an Express API**  to serve your data from a Mongo database
--   **Consume your API with a separate front-end**  built with React
+-   **Build a full-stack application**  by making your own backend and your own front-end.
+-   **Use an Express API**  to serve your data from a Mongo database.
+-   **Consume your API with a separate front-end**  built with React.
 -   **Be a complete product**  build multiple relationships.
 
-**Project Overview**
-
-For the third Project on our Software Engineering Immersive Course at General Assembly, we were tasked with building a Full Stack Application using the MERN stack, within 10 days in a group of pre-assigned members.
-
-As we were completing the course remotely it was a fantastic opportunity to utilise tools such as Slack, Zoom, Trello and Github. We had a morning Stand-Up where we were able to check progress and assist each other where necessary.
-
-For the project we wanted to build an Esports generator specifically for League Of Legends that would allow a user to quickly find the best match for them saving them time in their busy schedule. The user would be able to search by rating, date added, title or use a search function. The user can register and then be able to vote and leave messages to help others see the best match possible. We also implemented Admin user functionality that allows the Admin to delete other user comments and add videos directly from the site rather than the back-end database.
 
 ## Technologies Used
 
@@ -34,9 +36,9 @@ For the project we wanted to build an Esports generator specifically for League 
 -   React
 -   MongoDB
 -   Express
--    Bcrypt
+-   Bcrypt
 -   Insomnia
--    Axios
+-   Axios
 -   Heroku/Netlify for deployment
 -   Trello
 -   Git
@@ -46,7 +48,7 @@ For the project we wanted to build an Esports generator specifically for League 
 -   VS Code
 -   Eslint
 -   Gimp - image editing
--  Excalidraw - wireframing
+-   Excalidraw - wireframing
 
 ![<insert website screenshot here>](https://github.com/CosmasC128/Project-3/blob/development/ReadMe%20sources/Homepage.png?raw=true)
 
@@ -96,7 +98,7 @@ Routers and controllers were used throughout to keep an easy to navigate modular
 
 We used React, CSS and Bootstrap to design our site and utilised components. We imported Axios and used React-Router-Dom. 
 
-Below is a screenshot of our matches page with thumbnails of the youtube videos mapped in to create a grid. Above the grid is a search bar which we designed using REGEX and a drop down menu of search items that will select based on date added, rating and view amount.
+Below is a screenshot of our matches page with thumbnails of the YouTube videos mapped in to create a grid. Above the grid is a search bar which we designed using REGEX and a drop down menu of search items that will select based on date added, rating and view amount.
 
 ![enter image description here](https://github.com/CosmasC128/Project-3/blob/development/ReadMe%20sources/MatchSearch.png?raw=true)
 
@@ -114,25 +116,24 @@ Should a user attempt to access Admin functionality via the url they will run in
 
 ## Challenges
 
- - We wanted thumbnails of the videos to be displayed on the search page but we had to implement functionality to take this directly from the youtube video we were referencing. This saves hours of time in the future manually entering these URLs. We noticed that the URL of the image was always in the same index places so used a slice method here which worked great
- - We used JavaScript Map and Filter methods regularly to display the videos on the homepage and the match page
- - We wanted Admin users to be able to have full functionality and then the ability to delete standard registered users comments. We achieved this 
- - Using useEffect and useState to render pages when we expected them to be rendered was a good learning experience as rendering was not always as we expected
+ - We wanted thumbnails of the videos to be displayed on the search page but we had to implement functionality to take this directly from the YouTube video we were referencing. This saves hours of time in the future manually entering these URLs. We noticed that the URL of the image was always in the same index places so used a slice method here which worked great.
+ - We used JavaScript Map and Filter methods regularly to display the videos on the homepage and the match page.
+ - We wanted Admin users to be able to have full functionality and then the ability to delete standard registered users comments. We achieved this. 
+ - Using useEffect and useState to render pages when we expected them to be rendered was a good learning experience as rendering was not always as we expected.
 
 ## Wins
 
--   Overall we were all impressed with the site and how it turned out! We found some great resources and had a reasonable overall style for League of Legends and esports in particular
+-   Overall we were all impressed with the site and how it turned out! We found some great resources and had a reasonable overall style for League of Legends and esports in particular.
 -   Working together was fantastic for debugging! After googling and scratching our heads, usually a short screen-share over Zoom would highlight the problem to a team member with a fresh set of eyes within seconds! 
 - Although this team was probably more comfortable around functionality we did have a lot of fun using Bootstrap and CSS to display the pages as we wanted them and use the skills we already have on a larger project. 
 
 ## Future Improvements
 
--   Pagination on videos on the matches page
--   Add responsive design
--  
+-   Pagination on videos on the matches page.
+-   Add responsive design.
 
 ## Key Learnings
 
-- Nested components on the front end. Completing our own project enforced learning we had already gone through
+- Nested components on the front end. Completing our own project enforced learning we had already gone through.
 -   Console logs to ensure we were getting the information we expected whether on the frontend or the backend!
-- Ask the team for their thoughts often! Help from the team is invaluable. CSS and Bootstrap was often something we came together to work through
+- Ask the team for their thoughts often! Help from the team is invaluable. CSS and Bootstrap was often something we came together to work through.
